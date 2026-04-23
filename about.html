@@ -11,7 +11,7 @@
     .nav { background: #fff; border-bottom: 1px solid rgba(0,0,0,0.08); }
     .nav.scrolled { background: #fff; backdrop-filter: none; }
     .nav-logo { background: linear-gradient(135deg, #B8860B 0%, #D4AF37 50%, #B8860B 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-    .nav-links a { color: #444; }
+    .nav-links a { color: #333; }
     .nav-links a:hover { color: #111; }
     .nav-cta { color: var(--gold-dark) !important; border-color: rgba(184,134,11,0.5) !important; }
     .nav-toggle span { background: #111; }
@@ -19,30 +19,57 @@
 
     .sw { background: #fff; padding: 80px 6%; }
     .sc { background: #F8F6F1; padding: 80px 6%; }
-    .sd { background: #111; padding: 80px 6%; }
+    .sd { background: #111; padding: 80px 6%; position: relative; overflow: hidden; }
+    .sd::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse 60% 80% at 50% 50%, rgba(212,175,55,0.06) 0%, transparent 70%); pointer-events:none; }
     .inner { max-width: 1200px; margin: 0 auto; }
     .sec-label { font-size:0.7rem; font-weight:600; letter-spacing:0.22em; text-transform:uppercase; color:var(--gold-dark); display:block; margin-bottom:1rem; }
 
-    .body-text { font-size:0.9375rem; color:#444; font-weight:300; line-height:1.8; margin-bottom:1.25rem; }
+    /* DARKER BODY TEXT */
+    .body-text { font-size:0.9375rem; color:#222; font-weight:300; line-height:1.85; margin-bottom:1.25rem; }
 
-    .list-items { list-style:none; display:flex; flex-direction:column; gap:0.75rem; }
-    .list-items li { display:flex; align-items:center; gap:1rem; font-size:0.875rem; color:#444; font-weight:300; }
+    .list-items { list-style:none; display:flex; flex-direction:column; gap:0.875rem; }
+    .list-items li { display:flex; align-items:center; gap:1rem; font-size:0.9rem; color:#222; font-weight:300; line-height:1.5; }
     .list-items li::before { content:''; display:block; width:24px; height:1px; background:var(--gold-gradient); flex-shrink:0; }
 
-    .val-card { background:#fff; border:1px solid rgba(0,0,0,0.07); border-radius:4px; padding:2rem; text-align:center; transition:var(--transition); }
-    .val-card:hover { box-shadow:0 10px 40px rgba(0,0,0,0.08); transform:translateY(-4px); }
+    /* VALUE CARDS */
+    .val-card { background:#fff; border:1px solid rgba(0,0,0,0.09); border-radius:4px; padding:2rem; text-align:center; transition:var(--transition); }
+    .val-card:hover { box-shadow:0 10px 40px rgba(0,0,0,0.09); transform:translateY(-4px); }
     .val-icon { width:48px; height:48px; margin:0 auto 1.25rem; border:1px solid rgba(212,175,55,0.35); border-radius:50%; display:flex; align-items:center; justify-content:center; background:rgba(212,175,55,0.06); }
     .val-icon svg { width:20px; height:20px; stroke:var(--gold-dark); fill:none; stroke-width:1.5; }
-    .val-title { font-family:var(--font-display); font-size:1.125rem; color:#111; margin-bottom:0.5rem; }
-    .val-desc { font-size:0.8125rem; color:#555; font-weight:300; line-height:1.7; }
+    .val-title { font-family:var(--font-display); font-size:1.125rem; color:#111; margin-bottom:0.5rem; font-weight:400; }
+    .val-desc { font-size:0.8125rem; color:#333; font-weight:300; line-height:1.75; }
 
-    .tech-card { background:#fff; border:1px solid rgba(0,0,0,0.08); border-radius:4px; padding:1.75rem; transition:var(--transition); }
+    /* TECH CARDS */
+    .tech-card { background:#fff; border:1px solid rgba(0,0,0,0.09); border-radius:4px; padding:1.75rem; transition:var(--transition); }
     .tech-card:hover { box-shadow:0 8px 30px rgba(0,0,0,0.08); transform:translateY(-3px); }
     .tech-cat { font-size:0.65rem; font-weight:600; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold-dark); margin-bottom:0.5rem; }
     .tech-name { font-family:var(--font-display); font-size:1.25rem; color:#111; margin-bottom:0.5rem; }
-    .tech-desc { font-size:0.8125rem; color:#555; font-weight:300; line-height:1.7; }
+    .tech-desc { font-size:0.8125rem; color:#333; font-weight:300; line-height:1.75; }
 
-    .about-visual-box { background:#111; border-radius:4px; padding:4rem 3rem; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; min-height:320px; }
+    /* FIXED VISUAL BOX — big enough for Five&Co */
+    .about-visual-box {
+      background: #111;
+      border-radius: 4px;
+      padding: 3.5rem 2.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      min-height: 340px;
+    }
+    .about-brand-text {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 6vw, 5rem);
+      font-weight: 300;
+      background: var(--gold-text);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1;
+      margin-bottom: 0.75rem;
+      white-space: nowrap;
+    }
 
     .two-col { display:grid; grid-template-columns:1fr 1fr; gap:6rem; align-items:center; }
     @media(max-width:900px){ .two-col{grid-template-columns:1fr;gap:3rem;} }
@@ -64,7 +91,9 @@
     <div class="inner">
       <div class="two-col">
         <div>
-          <h2 class="fade-up" style="font-family:var(--font-display);font-size:clamp(1.75rem,3vw,2.5rem);font-weight:300;color:#111;line-height:1.3;margin-bottom:1.75rem;">Web design that works as hard<br>as the <em style="font-style:italic;color:var(--gold-dark);">people we build for.</em></h2>
+          <h2 class="fade-up" style="font-family:var(--font-display);font-size:clamp(1.75rem,3vw,2.5rem);font-weight:300;color:#111;line-height:1.3;margin-bottom:1.75rem;">
+            Web design that works as hard<br>as the <em style="font-style:italic;color:var(--gold-dark);">people we build for.</em>
+          </h2>
           <p class="body-text fade-up stagger-1">Five&Co is a New Zealand web design studio built on a simple premise: small businesses deserve great websites without being gouged for them.</p>
           <p class="body-text fade-up stagger-2">Too many good Kiwi businesses are stuck with slow, outdated, cookie-cutter websites — either because the big agencies are too expensive, or the DIY tools produce something that looks like everyone else's.</p>
           <p class="body-text fade-up stagger-3">We exist to fix that. Custom-built sites, honest pricing, modern tech stack, real results.</p>
@@ -77,9 +106,9 @@
         </div>
         <div class="fade-up stagger-2">
           <div class="about-visual-box">
-            <div style="font-family:var(--font-display);font-size:5rem;font-weight:300;background:var(--gold-text);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;margin-bottom:0.5rem;">5&amp;</div>
-            <div style="font-family:var(--font-display);font-size:1rem;color:rgba(255,255,255,0.5);font-weight:300;margin-bottom:1.5rem;">Digital Design &amp; Web Strategy</div>
-            <div style="display:flex;align-items:center;gap:0.75rem;">
+            <div class="about-brand-text">Five&amp;Co</div>
+            <div style="font-family:var(--font-display);font-size:1rem;color:rgba(255,255,255,0.45);font-weight:300;margin-bottom:1.75rem;letter-spacing:0.05em;">Digital Design &amp; Web Strategy</div>
+            <div style="display:flex;align-items:center;gap:0.875rem;">
               <div style="height:1px;width:30px;background:var(--gold-gradient);"></div>
               <span style="font-size:0.65rem;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold-light);">Est. 2026 · New Zealand</span>
               <div style="height:1px;width:30px;background:var(--gold-gradient);"></div>
@@ -133,7 +162,7 @@
       <div style="margin-bottom:4rem;">
         <span class="sec-label fade-up">Under the Hood</span>
         <h2 class="fade-up stagger-1" style="font-family:var(--font-display);font-size:clamp(2rem,4vw,3rem);font-weight:300;color:#111;line-height:1.1;margin-top:0.5rem;">The tech we use.<br><em style="font-style:italic;color:var(--gold-dark);">And why it matters.</em></h2>
-        <p class="fade-up stagger-2" style="font-size:0.9375rem;color:#444;font-weight:300;max-width:520px;margin-top:1rem;line-height:1.8;">Five&Co doesn't use bloated page builders. We hand-code sites using modern web technologies, then deploy on Vercel — trusted by Airbnb, TikTok, and thousands of global brands.</p>
+        <p class="fade-up stagger-2" style="font-size:0.9375rem;color:#333;font-weight:300;max-width:520px;margin-top:1rem;line-height:1.85;">Five&Co doesn't use bloated page builders. We hand-code sites using modern web technologies, then deploy on Vercel — trusted by Airbnb, TikTok, and thousands of global brands.</p>
       </div>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.5rem;">
         <div class="tech-card fade-up"><div class="tech-cat">Stack</div><div class="tech-name">HTML / CSS / JS</div><p class="tech-desc">Clean, lightweight, fully custom code that loads fast and doesn't drag third-party baggage with it.</p></div>
@@ -149,9 +178,9 @@
   <section class="sd" style="text-align:center;">
     <div class="inner" style="max-width:600px;position:relative;z-index:1;">
       <h2 class="fade-up" style="font-family:var(--font-display);font-size:clamp(1.75rem,4vw,3rem);font-weight:300;color:#fff;line-height:1.1;margin-bottom:1rem;">Sound like your kind of studio?</h2>
-      <p class="fade-up stagger-1" style="color:rgba(255,255,255,0.55);font-size:0.9375rem;font-weight:300;margin-bottom:2rem;">Get in touch. First conversation is always free.</p>
+      <p class="fade-up stagger-1" style="color:rgba(255,255,255,0.65);font-size:0.9375rem;font-weight:300;margin-bottom:2rem;line-height:1.8;">Get in touch. First conversation is always free.</p>
       <div class="fade-up stagger-2" style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
-        <a href="contact.html" class="btn btn-primary">Get a Free Quote</a>
+        <a href="contact.html" class="btn btn-primary">Get in Touch</a>
         <a href="pricing.html" class="btn btn-ghost">View Pricing</a>
       </div>
     </div>

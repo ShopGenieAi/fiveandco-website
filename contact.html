@@ -4,14 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contact — Five&Co</title>
-  <meta name="description" content="Get a free, no-obligation quote from Five&Co. We'll come back to you within one business day.">
+  <meta name="description" content="Get a free, no-obligation quote from Five&Co. We'll come back to you within 24 hours.">
   <link rel="stylesheet" href="css/style.css">
   <style>
     body { background: #fff; color: #111; }
     .nav { background: #fff; border-bottom: 1px solid rgba(0,0,0,0.08); }
     .nav.scrolled { background: #fff; backdrop-filter: none; }
     .nav-logo { background: linear-gradient(135deg, #B8860B 0%, #D4AF37 50%, #B8860B 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-    .nav-links a { color: #444; }
+    .nav-links a { color: #333; }
     .nav-links a:hover { color: #111; }
     .nav-cta { color: var(--gold-dark) !important; border-color: rgba(184,134,11,0.5) !important; }
     .nav-toggle span { background: #111; }
@@ -25,7 +25,7 @@
     @media(max-width:900px){ .contact-grid{grid-template-columns:1fr;gap:3rem;} }
 
     .info-item { padding: 1.25rem 0; border-bottom: 1px solid rgba(0,0,0,0.07); }
-    .info-label { font-size:0.65rem; font-weight:600; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold-dark); margin-bottom:0.25rem; }
+    .info-label { font-size:0.65rem; font-weight:600; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold-dark); margin-bottom:0.3rem; }
     .info-value { font-family:var(--font-display); font-size:1.125rem; color:#111; text-decoration:none; transition:var(--transition); display:block; }
     .info-value:hover { color:var(--gold-dark); }
 
@@ -33,7 +33,7 @@
     .form-row { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
     @media(max-width:600px){ .form-row{grid-template-columns:1fr;} }
     .form-group { display:flex; flex-direction:column; gap:0.4rem; }
-    .form-label { font-size:0.65rem; font-weight:600; letter-spacing:0.15em; text-transform:uppercase; color:#888; }
+    .form-label { font-size:0.65rem; font-weight:600; letter-spacing:0.15em; text-transform:uppercase; color:#666; }
 
     .form-input, .form-select, .form-textarea {
       background: #F8F6F1;
@@ -42,8 +42,8 @@
       padding: 0.875rem 1rem;
       color: #111;
       font-family: var(--font-body);
-      font-size: 0.875rem;
-      font-weight: 300;
+      font-size: 0.9rem;
+      font-weight: 400;
       transition: var(--transition);
       outline: none;
       width: 100%;
@@ -54,7 +54,7 @@
       background: #fff;
       box-shadow: 0 0 0 3px rgba(184,134,11,0.08);
     }
-    .form-input::placeholder, .form-textarea::placeholder { color: #aaa; }
+    .form-input::placeholder { color: #999; }
     .form-select {
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23B8860B' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
       background-repeat: no-repeat;
@@ -62,9 +62,12 @@
       background-color: #F8F6F1;
       padding-right: 2.5rem;
       cursor: pointer;
+      color: #111;
     }
     .form-select option { background: #fff; color: #111; }
-    .form-textarea { resize: vertical; min-height: 140px; }
+    .form-textarea { resize: vertical; min-height: 100px; }
+
+    .form-note { font-size:0.8rem; color:#666; font-weight:300; line-height:1.6; background:#F8F6F1; border-left:3px solid var(--gold-light); padding:1rem 1.25rem; border-radius:2px; }
 
     .notification { position:fixed; bottom:2rem; right:2rem; background:#111; border:1px solid rgba(212,175,55,0.5); border-radius:4px; padding:1rem 1.5rem; font-size:0.875rem; color:#fff; z-index:9999; transform:translateY(100px); opacity:0; transition:var(--transition); }
     .notification.show { transform:translateY(0); opacity:1; }
@@ -77,17 +80,27 @@
     <div style="position:absolute;inset:0;background:radial-gradient(ellipse 50% 80% at 80% 50%, rgba(212,175,55,0.08) 0%, transparent 70%);"></div>
     <div style="max-width:1200px;margin:0 auto;width:100%;position:relative;">
       <span class="sec-label fade-up" style="color:var(--gold-light);">Let's Talk</span>
-      <h1 class="fade-up stagger-1" style="font-family:var(--font-display);font-size:clamp(2.5rem,6vw,5rem);font-weight:300;color:#fff;line-height:1;">Get a Free Quote</h1>
+      <h1 class="fade-up stagger-1" style="font-family:var(--font-display);font-size:clamp(2.5rem,6vw,5rem);font-weight:300;color:#fff;line-height:1;">Get in Touch</h1>
     </div>
   </div>
 
   <section class="sw">
     <div class="inner">
       <div class="contact-grid">
+
+        <!-- LEFT INFO -->
         <div>
-          <p class="fade-up" style="font-size:0.9375rem;color:#444;font-weight:300;line-height:1.8;margin-bottom:2rem;">Tell us about your project. No obligation, no sales pitch. Just a straightforward conversation about what you need and how we can help.</p>
-          <p class="fade-up stagger-1" style="font-size:0.9375rem;color:#444;font-weight:300;line-height:1.8;margin-bottom:3rem;">We'll come back to you within <strong style="color:#111;font-weight:500;">one business day.</strong></p>
-          <div class="fade-up stagger-2">
+          <h2 class="fade-up" style="font-family:var(--font-display);font-size:clamp(1.5rem,2.5vw,2rem);font-weight:300;color:#111;line-height:1.3;margin-bottom:1.25rem;">
+            Tell us who you are.<br><em style="font-style:italic;color:var(--gold-dark);">We'll take it from there.</em>
+          </h2>
+          <p class="fade-up stagger-1" style="font-size:0.9375rem;color:#333;font-weight:300;line-height:1.8;margin-bottom:1.25rem;">
+            No lengthy forms, no sales pitch. Just drop us your details and what you're after — we'll be in touch within 24 hours to have a proper conversation.
+          </p>
+          <p class="fade-up stagger-2" style="font-size:0.9375rem;color:#333;font-weight:300;line-height:1.8;margin-bottom:3rem;">
+            From there we'll send through a full scope document tailored to your project.
+          </p>
+
+          <div class="fade-up stagger-3">
             <div class="info-item">
               <div class="info-label">Email</div>
               <a href="mailto:hello@fiveandco.co.nz" class="info-value">hello@fiveandco.co.nz</a>
@@ -102,16 +115,21 @@
             </div>
             <div class="info-item">
               <div class="info-label">Response Time</div>
-              <span class="info-value">Within 1 business day</span>
+              <span class="info-value">Within 24 hours</span>
             </div>
           </div>
         </div>
 
+        <!-- RIGHT FORM -->
         <div class="fade-up stagger-2">
+          <div class="form-note" style="margin-bottom:2rem;">
+            <strong style="color:#111;font-weight:500;">No essay required.</strong> Just give us the basics — we'll reach out, have a kōrero, and put together a proper quote and scope document from there.
+          </div>
+
           <form class="form" id="contactForm" novalidate>
             <div class="form-row">
               <div class="form-group">
-                <label class="form-label" for="firstName">First Name</label>
+                <label class="form-label" for="firstName">First Name *</label>
                 <input type="text" id="firstName" name="firstName" class="form-input" placeholder="Your first name" required>
               </div>
               <div class="form-group">
@@ -119,17 +137,20 @@
                 <input type="text" id="lastName" name="lastName" class="form-input" placeholder="Your last name">
               </div>
             </div>
+
             <div class="form-group">
-              <label class="form-label" for="email">Email Address</label>
+              <label class="form-label" for="email">Email Address *</label>
               <input type="email" id="email" name="email" class="form-input" placeholder="you@yourbusiness.co.nz" required>
             </div>
+
             <div class="form-group">
               <label class="form-label" for="business">Business Name</label>
               <input type="text" id="business" name="business" class="form-input" placeholder="Your business name">
             </div>
+
             <div class="form-group">
-              <label class="form-label" for="service">I'm interested in</label>
-              <select id="service" name="service" class="form-select">
+              <label class="form-label" for="service">What are you after? *</label>
+              <select id="service" name="service" class="form-select" required>
                 <option value="" disabled selected>Select a service</option>
                 <option value="starter">Website Build — Starter (up to 3 pages)</option>
                 <option value="business">Website Build — Business (up to 6 pages)</option>
@@ -140,6 +161,7 @@
                 <option value="unsure">Not sure yet — help me figure it out</option>
               </select>
             </div>
+
             <div class="form-row">
               <div class="form-group">
                 <label class="form-label" for="budget">Budget Range (NZD)</label>
@@ -163,12 +185,19 @@
                 </select>
               </div>
             </div>
+
             <div class="form-group">
-              <label class="form-label" for="message">Tell Us About Your Project</label>
-              <textarea id="message" name="message" class="form-textarea" placeholder="What does your business do? What do you need your website to achieve? Any existing website we should know about?" required></textarea>
+              <label class="form-label" for="anything">Anything else? <span style="font-weight:300;text-transform:none;letter-spacing:0;">(optional)</span></label>
+              <textarea id="anything" name="anything" class="form-textarea" style="min-height:80px;" placeholder="Website URL, specific ideas, questions — totally optional."></textarea>
             </div>
-            <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">Send Enquiry</button>
-            <p style="font-size:0.75rem;color:#aaa;font-weight:300;text-align:center;">We'll respond within one business day. No spam, ever.</p>
+
+            <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;font-size:0.8rem;letter-spacing:0.18em;">
+              Send My Details
+            </button>
+
+            <p style="font-size:0.75rem;color:#888;font-weight:300;text-align:center;line-height:1.6;">
+              We'll be in touch within 24 hours. No spam, ever.
+            </p>
           </form>
         </div>
       </div>
@@ -187,9 +216,9 @@
       e.preventDefault();
       const firstName = document.getElementById('firstName').value.trim();
       const email = document.getElementById('email').value.trim();
-      const message = document.getElementById('message').value.trim();
-      if (!firstName || !email || !message) {
-        notification.textContent = '⚠  Please fill in your name, email, and project details.';
+      const service = document.getElementById('service').value;
+      if (!firstName || !email || !service) {
+        notification.textContent = '⚠  Please fill in your name, email, and what you\'re after.';
         notification.classList.add('show');
         setTimeout(() => notification.classList.remove('show'), 4000);
         return;
@@ -198,10 +227,10 @@
       btn.textContent = 'Sending...';
       btn.disabled = true;
       setTimeout(() => {
-        notification.textContent = '✓  Message sent! We\'ll be in touch within one business day.';
+        notification.textContent = '✓  Got it! We\'ll be in touch within 24 hours.';
         notification.classList.add('show');
         form.reset();
-        btn.textContent = 'Send Enquiry';
+        btn.textContent = 'Send My Details';
         btn.disabled = false;
         setTimeout(() => notification.classList.remove('show'), 5000);
       }, 1200);

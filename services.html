@@ -9,48 +9,45 @@
   <style>
     body { background: #fff; color: #111; }
     .nav { background: #fff; border-bottom: 1px solid rgba(0,0,0,0.08); }
-    .nav.scrolled { background: #fff; backdrop-filter: none; border-bottom: 1px solid rgba(0,0,0,0.1); }
+    .nav.scrolled { background: #fff; backdrop-filter: none; }
     .nav-logo { background: linear-gradient(135deg, #B8860B 0%, #D4AF37 50%, #B8860B 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-    .nav-links a { color: #444; }
+    .nav-links a { color: #333; }
     .nav-links a:hover { color: #111; }
     .nav-cta { color: var(--gold-dark) !important; border-color: rgba(184,134,11,0.5) !important; }
     .nav-toggle span { background: #111; }
-
-    .page-header { background: #111; border-bottom: none; }
+    .page-header { background: #111; }
 
     .sw { background: #fff; padding: 80px 6%; }
     .sc { background: #F8F6F1; padding: 80px 6%; }
     .inner { max-width: 1200px; margin: 0 auto; }
+    .sec-label { font-size:0.7rem; font-weight:600; letter-spacing:0.22em; text-transform:uppercase; color:var(--gold-dark); display:block; margin-bottom:1rem; }
 
-    .sec-label { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold-dark); display: block; margin-bottom: 1rem; }
-    .sec-heading { font-family: var(--font-display); font-size: clamp(2rem,4vw,3.5rem); font-weight: 300; color: #111; line-height: 1.1; }
-    .sec-heading em { font-style: italic; color: var(--gold-dark); }
-
-    .body-text { font-size: 0.9375rem; color: #444; font-weight: 300; line-height: 1.8; margin-bottom: 1.25rem; }
+    .body-text { font-size:0.9375rem; color:#222; font-weight:300; line-height:1.85; margin-bottom:1.25rem; }
 
     .feature-list { list-style: none; display: flex; flex-direction: column; gap: 0; }
-    .feature-list li { font-size: 0.9rem; color: #444; font-weight: 300; padding: 0.875rem 0; border-bottom: 1px solid rgba(0,0,0,0.07); display: flex; gap: 1rem; align-items: flex-start; }
-    .feature-list li::before { content: '—'; color: var(--gold-dark); flex-shrink: 0; opacity: 0.7; }
+    .feature-list li { font-size:0.9rem; color:#222; font-weight:300; padding:0.875rem 0; border-bottom:1px solid rgba(0,0,0,0.07); display:flex; gap:1rem; align-items:flex-start; line-height:1.5; }
+    .feature-list li::before { content:'—'; color:var(--gold-dark); flex-shrink:0; opacity:0.8; }
 
-    .price-tag { font-family: var(--font-display); font-size: 2rem; color: var(--gold-dark); margin: 1.5rem 0 0.25rem; }
-    .price-note { font-size: 0.75rem; color: #888; font-weight: 300; }
+    .price-tag { font-family:var(--font-display); font-size:2rem; color:var(--gold-dark); margin:1.5rem 0 0.25rem; }
+    .price-note { font-size:0.75rem; color:#666; font-weight:300; }
 
-    .svc-card-light { background: #fff; border: 1px solid rgba(0,0,0,0.08); border-top: 3px solid var(--gold-light); border-radius: 4px; padding: 2.5rem 2rem; transition: var(--transition); }
-    .svc-card-light:hover { transform: translateY(-5px); box-shadow: 0 20px 50px rgba(0,0,0,0.09); }
-    .svc-num { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.15em; color: var(--gold-dark); opacity: 0.6; margin-bottom: 1rem; }
-    .svc-title { font-family: var(--font-display); font-size: 1.5rem; color: #111; margin-bottom: 0.75rem; }
-    .svc-desc { font-size: 0.875rem; color: #555; font-weight: 300; line-height: 1.75; margin-bottom: 1rem; }
-    .svc-price { font-family: var(--font-display); font-size: 1.125rem; color: var(--gold-dark); }
+    .svc-card-light { background:#fff; border:1px solid rgba(0,0,0,0.09); border-top:3px solid var(--gold-light); border-radius:4px; padding:2.5rem 2rem; transition:var(--transition); }
+    .svc-card-light:hover { transform:translateY(-5px); box-shadow:0 20px 50px rgba(0,0,0,0.1); }
+    .svc-num { font-size:0.75rem; font-weight:600; letter-spacing:0.15em; color:var(--gold-dark); opacity:0.7; margin-bottom:1rem; }
+    .svc-title { font-family:var(--font-display); font-size:1.5rem; color:#111; margin-bottom:0.75rem; }
+    .svc-desc { font-size:0.875rem; color:#333; font-weight:300; line-height:1.8; margin-bottom:1rem; }
+    .svc-price { font-family:var(--font-display); font-size:1.125rem; color:var(--gold-dark); }
     .svc-features { list-style:none; margin-top:1.25rem; display:flex; flex-direction:column; gap:0.5rem; }
-    .svc-features li { font-size:0.8125rem; color:#555; font-weight:300; display:flex; gap:0.75rem; align-items:flex-start; }
-    .svc-features li::before { content:'✓'; color:var(--gold-dark); flex-shrink:0; }
+    .svc-features li { font-size:0.8125rem; color:#333; font-weight:300; display:flex; gap:0.75rem; align-items:flex-start; line-height:1.5; }
+    .svc-features li::before { content:'✓'; color:var(--gold-dark); flex-shrink:0; font-weight:600; }
 
-    .hosting-box { background: #111; border-radius: 4px; padding: 3rem; text-align: center; }
+    .hosting-box { background:#111; border-radius:4px; padding:3rem; text-align:center; }
 
-    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start; }
-    @media(max-width:900px){ .two-col { grid-template-columns:1fr; gap:3rem; } }
+    .two-col { display:grid; grid-template-columns:1fr 1fr; gap:6rem; align-items:start; }
+    @media(max-width:900px){ .two-col{grid-template-columns:1fr;gap:3rem;} }
 
-    .cta-strip { background: #111; padding: 80px 6%; text-align: center; }
+    .cta-strip { background:#111; padding:80px 6%; text-align:center; position:relative; overflow:hidden; }
+    .cta-strip::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse 60% 80% at 50% 50%, rgba(212,175,55,0.06) 0%, transparent 70%); pointer-events:none; }
   </style>
 </head>
 <body>
@@ -70,7 +67,7 @@
       <div class="two-col">
         <div>
           <span class="sec-label fade-up">01 — Core Service</span>
-          <h2 class="sec-heading fade-up stagger-1" style="margin-bottom:1.5rem;">Website Design <em>&amp; Build</em></h2>
+          <h2 class="fade-up stagger-1" style="font-family:var(--font-display);font-size:clamp(2rem,4vw,3.5rem);font-weight:300;color:#111;line-height:1.1;margin-bottom:1.5rem;">Website Design <em style="font-style:italic;color:var(--gold-dark);">&amp; Build</em></h2>
           <p class="body-text fade-up stagger-2">Our core service. Every website is designed from scratch to match your brand, your goals, and your audience. No page-builder drag-and-drop rubbish — hand-crafted code that performs and looks incredible on every device.</p>
           <p class="body-text fade-up stagger-3">We target 90+ Google PageSpeed scores as standard. Because slow websites lose customers, and we're not about letting that happen.</p>
           <div class="fade-up stagger-4">
@@ -102,7 +99,7 @@
           <div class="hosting-box">
             <div style="font-size:0.7rem;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold-light);margin-bottom:1rem;">Monthly Per Site</div>
             <div style="font-family:var(--font-display);font-size:5rem;font-weight:300;background:var(--gold-text);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;margin-bottom:0.5rem;">$30</div>
-            <div style="font-size:0.875rem;color:rgba(255,255,255,0.5);margin-bottom:2rem;">per site, per month*</div>
+            <div style="font-size:0.875rem;color:rgba(255,255,255,0.55);margin-bottom:2rem;">per site, per month*</div>
             <div style="display:flex;flex-wrap:wrap;gap:0.75rem;justify-content:center;">
               <div class="tech-pill">Vercel</div>
               <div class="tech-pill">GitHub</div>
@@ -113,7 +110,7 @@
         </div>
         <div>
           <span class="sec-label fade-up">02 — Always On</span>
-          <h2 class="sec-heading fade-up stagger-1" style="margin-bottom:1.5rem;">Hosting <em>&amp; Deployment</em></h2>
+          <h2 class="fade-up stagger-1" style="font-family:var(--font-display);font-size:clamp(2rem,4vw,3.5rem);font-weight:300;color:#111;line-height:1.1;margin-bottom:1.5rem;">Hosting <em style="font-style:italic;color:var(--gold-dark);">&amp; Deployment</em></h2>
           <p class="body-text fade-up stagger-2">Five&Co manages all hosting through Vercel and GitHub — the same infrastructure used by the world's fastest-growing tech companies. Enterprise-grade speed, uptime, and security for a flat $30/month.</p>
           <ul class="feature-list fade-up stagger-3">
             <li>Vercel cloud hosting — global CDN, sub-second load times</li>
@@ -132,7 +129,7 @@
     <div class="inner">
       <div style="text-align:center;margin-bottom:4rem;">
         <span class="sec-label fade-up">03, 04 &amp; 05</span>
-        <h2 class="sec-heading fade-up stagger-1" style="margin-top:0.5rem;">The full picture</h2>
+        <h2 class="fade-up stagger-1" style="font-family:var(--font-display);font-size:clamp(2rem,4vw,3rem);font-weight:300;color:#111;margin-top:0.5rem;">The full picture</h2>
       </div>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:1.5rem;">
         <div class="svc-card-light fade-up">
@@ -180,11 +177,10 @@
   </section>
 
   <section class="cta-strip">
-    <div class="inner" style="max-width:600px;">
-      <span class="sec-label fade-up" style="color:var(--gold-light);">Not sure what you need?</span>
-      <h2 class="fade-up stagger-1" style="font-family:var(--font-display);font-size:clamp(1.75rem,4vw,3rem);font-weight:300;color:#fff;line-height:1.1;margin:0.75rem 0 1.25rem;">That's what the free<br><em class="text-gold" style="font-style:italic;">quote is for.</em></h2>
-      <p class="fade-up stagger-2" style="color:rgba(255,255,255,0.55);font-size:0.9375rem;font-weight:300;margin-bottom:2rem;">Tell us about your business and we'll figure out the best path forward together.</p>
-      <div class="fade-up stagger-3"><a href="contact.html" class="btn btn-primary">Get a Free Quote</a></div>
+    <div class="inner" style="max-width:600px;position:relative;z-index:1;">
+      <h2 class="fade-up" style="font-family:var(--font-display);font-size:clamp(1.75rem,4vw,3rem);font-weight:300;color:#fff;line-height:1.1;margin-bottom:1rem;">Not sure what you need?</h2>
+      <p class="fade-up stagger-1" style="color:rgba(255,255,255,0.65);font-size:0.9375rem;font-weight:300;margin-bottom:2rem;line-height:1.8;">Tell us about your business and we'll figure out the best path forward together.</p>
+      <div class="fade-up stagger-2"><a href="contact.html" class="btn btn-primary">Get in Touch</a></div>
     </div>
   </section>
 
