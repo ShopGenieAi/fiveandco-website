@@ -4,177 +4,183 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pricing — Five&Co</title>
-  <meta name="description" content="Honest, transparent pricing for Five&Co website builds. No hidden fees, no fluff. From $850 NZD.">
+  <meta name="description" content="Honest, transparent pricing for Five&Co website builds. No hidden fees. From $850 NZD.">
   <link rel="stylesheet" href="css/style.css">
+  <style>
+    body { background: #fff; color: #111; }
+    .nav { background: #fff; border-bottom: 1px solid rgba(0,0,0,0.08); }
+    .nav.scrolled { background: #fff; backdrop-filter: none; }
+    .nav-logo { background: linear-gradient(135deg, #B8860B 0%, #D4AF37 50%, #B8860B 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .nav-links a { color: #444; }
+    .nav-links a:hover { color: #111; }
+    .nav-cta { color: var(--gold-dark) !important; border-color: rgba(184,134,11,0.5) !important; }
+    .nav-toggle span { background: #111; }
+    .page-header { background: #111; }
+
+    .sw { background: #fff; padding: 80px 6%; }
+    .sc { background: #F8F6F1; padding: 80px 6%; }
+    .sd { background: #111; padding: 80px 6%; }
+    .inner { max-width: 1200px; margin: 0 auto; }
+    .sec-label { font-size:0.7rem; font-weight:600; letter-spacing:0.22em; text-transform:uppercase; color:var(--gold-dark); display:block; margin-bottom:1rem; }
+
+    .pricing-card {
+      background: #fff;
+      border: 1px solid rgba(0,0,0,0.08);
+      border-radius: 4px;
+      padding: 2.5rem 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+    .pricing-card:hover { transform: translateY(-5px); box-shadow: 0 20px 50px rgba(0,0,0,0.1); }
+    .pricing-card.featured { border: 2px solid var(--gold-dark); }
+    .pricing-card.featured::before { content:'Most Popular'; position:absolute; top:1.25rem; right:-2rem; background:var(--gold-gradient); color:#111; font-size:0.6rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; padding:0.25rem 3rem; transform:rotate(45deg); }
+
+    .tier { font-size:0.7rem; font-weight:600; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold-dark); }
+    .price { font-family:var(--font-display); font-size:2.5rem; font-weight:300; color:#111; line-height:1; }
+    .price-range { font-size:0.875rem; font-family:var(--font-body); font-weight:300; color:#888; }
+    .price-desc { font-size:0.875rem; color:#555; font-weight:300; line-height:1.65; }
+    .price-features { list-style:none; display:flex; flex-direction:column; gap:0.625rem; flex:1; }
+    .price-features li { font-size:0.8125rem; color:#444; font-weight:300; display:flex; gap:0.75rem; align-items:flex-start; }
+    .price-features li::before { content:'✓'; color:var(--gold-dark); flex-shrink:0; font-weight:600; }
+
+    .rate-card { background:#fff; border:1px solid rgba(0,0,0,0.08); border-left:3px solid var(--gold-light); border-radius:4px; padding:2rem; }
+    .rate-label { font-size:0.65rem; font-weight:600; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold-dark); margin-bottom:0.75rem; }
+    .rate-price { font-family:var(--font-display); font-size:2.25rem; font-weight:300; color:#111; line-height:1; margin-bottom:0.25rem; }
+    .rate-name { font-family:var(--font-display); font-size:1.125rem; color:#111; margin-bottom:0.5rem; }
+    .rate-desc { font-size:0.8125rem; color:#555; font-weight:300; line-height:1.7; }
+
+    .terms-item { padding:1.25rem 0; border-bottom:1px solid rgba(0,0,0,0.07); display:flex; gap:1rem; align-items:flex-start; }
+    .terms-item::before { content:'—'; color:var(--gold-dark); flex-shrink:0; }
+    .terms-item span { font-size:0.9rem; color:#444; font-weight:300; line-height:1.6; }
+
+    .two-col { display:grid; grid-template-columns:1fr 1fr; gap:5rem; }
+    @media(max-width:900px){ .two-col{grid-template-columns:1fr;gap:3rem;} }
+  </style>
 </head>
 <body>
   <div id="nav-placeholder"></div>
 
-  <div class="page-header">
-    <div class="page-header-bg"></div>
-    <div class="page-header-inner">
-      <span class="label fade-up" style="display:block; margin-bottom:1rem;">Transparent & Fair</span>
-      <h1 class="display-lg fade-up stagger-1">Pricing</h1>
+  <div class="page-header" style="min-height:35vh;display:flex;align-items:flex-end;padding:calc(var(--nav-height) + 60px) 6% 4rem;position:relative;overflow:hidden;">
+    <div style="position:absolute;inset:0;background:radial-gradient(ellipse 50% 80% at 80% 50%, rgba(212,175,55,0.08) 0%, transparent 70%);"></div>
+    <div style="max-width:1200px;margin:0 auto;width:100%;position:relative;">
+      <span class="sec-label fade-up" style="color:var(--gold-light);">Transparent &amp; Fair</span>
+      <h1 class="fade-up stagger-1" style="font-family:var(--font-display);font-size:clamp(2.5rem,6vw,5rem);font-weight:300;color:#fff;line-height:1;">Pricing</h1>
     </div>
   </div>
 
   <!-- BUILD PACKAGES -->
-  <section>
-    <div class="section-inner">
-      <div class="section-header">
-        <span class="label fade-up">Build Packages</span>
-        <h2 class="display-md fade-up stagger-1" style="margin-top:0.75rem;">Pick your package.<br><em class="text-gold" style="font-style:italic;">Or we'll figure it out together.</em></h2>
-        <p style="color:var(--white-muted); font-size:0.9375rem; font-weight:300; max-width:500px; margin-top:1rem;" class="fade-up stagger-2">Not sure which package suits you? No stress — get in touch and we'll work it out. These are guidelines, not rigid boxes.</p>
+  <section class="sw">
+    <div class="inner">
+      <div style="margin-bottom:4rem;">
+        <span class="sec-label fade-up">Build Packages</span>
+        <h2 class="fade-up stagger-1" style="font-family:var(--font-display);font-size:clamp(2rem,4vw,3.5rem);font-weight:300;color:#111;line-height:1.1;margin-top:0.5rem;">Pick your package.<br><em style="font-style:italic;color:var(--gold-dark);">Or we'll figure it out together.</em></h2>
+        <p class="fade-up stagger-2" style="color:#555;font-size:0.9375rem;font-weight:300;max-width:500px;margin-top:1rem;line-height:1.8;">Not sure which suits you? Get in touch and we'll work it out. These are guidelines, not rigid boxes.</p>
       </div>
-
-      <div class="pricing-grid">
-        <!-- Starter -->
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.5rem;">
         <div class="pricing-card fade-up">
-          <div class="pricing-tier">Starter</div>
-          <div>
-            <div class="pricing-price"><sup>$</sup>850 <span>– $1,200*</span></div>
-          </div>
-          <div class="pricing-desc">Perfect for small businesses, sole traders, and anyone who needs a clean, professional web presence fast.</div>
-          <ul class="pricing-features">
-            <li>Up to 3 pages</li>
-            <li>Custom design to your brand</li>
-            <li>Fully responsive</li>
-            <li>Technical SEO setup included</li>
-            <li>Contact form</li>
-            <li>2 rounds of revisions</li>
-            <li>Launch &amp; deployment</li>
+          <div class="tier">Starter</div>
+          <div><div class="price">$850<span class="price-range"> – $1,200*</span></div></div>
+          <div class="price-desc">Perfect for small businesses and sole traders who need a clean, professional web presence fast.</div>
+          <ul class="price-features">
+            <li>Up to 3 pages</li><li>Custom design to your brand</li><li>Fully responsive</li><li>Technical SEO setup</li><li>Contact form</li><li>2 rounds of revisions</li><li>Launch &amp; deployment</li>
           </ul>
-          <a href="contact.html" class="btn btn-outline" style="text-align:center; justify-content:center;">Get a Quote</a>
+          <a href="contact.html" class="btn btn-outline" style="justify-content:center;text-align:center;">Get a Quote</a>
         </div>
-
-        <!-- Business -->
         <div class="pricing-card featured fade-up stagger-1">
-          <div class="pricing-tier">Business</div>
-          <div>
-            <div class="pricing-price"><sup>$</sup>1,200 <span>– $2,000*</span></div>
-          </div>
-          <div class="pricing-desc">For established businesses that need a full web presence with more content, functionality, and polish.</div>
-          <ul class="pricing-features">
-            <li>Up to 6 pages</li>
-            <li>Everything in Starter</li>
-            <li>Blog setup</li>
-            <li>Gallery or portfolio section</li>
-            <li>Advanced contact forms</li>
-            <li>Google Maps integration</li>
-            <li>Social media integration</li>
-            <li>2 rounds of revisions</li>
+          <div class="tier">Business</div>
+          <div><div class="price">$1,200<span class="price-range"> – $2,000*</span></div></div>
+          <div class="price-desc">For established businesses that need a full web presence with more content, functionality, and polish.</div>
+          <ul class="price-features">
+            <li>Up to 6 pages</li><li>Everything in Starter</li><li>Blog setup</li><li>Gallery or portfolio section</li><li>Advanced contact forms</li><li>Google Maps integration</li><li>Social media integration</li>
           </ul>
-          <a href="contact.html" class="btn btn-primary" style="text-align:center; justify-content:center;">Get a Quote</a>
+          <a href="contact.html" class="btn btn-primary" style="justify-content:center;text-align:center;">Get a Quote</a>
         </div>
-
-        <!-- Premium -->
         <div class="pricing-card fade-up stagger-2">
-          <div class="pricing-tier">Premium</div>
-          <div>
-            <div class="pricing-price"><sup>$</sup>2,000 <span>– $3,500*</span></div>
-          </div>
-          <div class="pricing-desc">For businesses that want the full package — website, branding, and advanced features all under one roof.</div>
-          <ul class="pricing-features">
-            <li>Up to 10 pages</li>
-            <li>Everything in Business</li>
-            <li>Branding assets included</li>
-            <li>Advanced animations &amp; interactions</li>
-            <li>Custom functionality</li>
-            <li>Priority build timeline</li>
-            <li>Extended revision rounds</li>
+          <div class="tier">Premium</div>
+          <div><div class="price">$2,000<span class="price-range"> – $3,500*</span></div></div>
+          <div class="price-desc">For businesses that want the full package — website, branding, and advanced features all under one roof.</div>
+          <ul class="price-features">
+            <li>Up to 10 pages</li><li>Everything in Business</li><li>Branding assets included</li><li>Advanced animations</li><li>Custom functionality</li><li>Priority build timeline</li>
           </ul>
-          <a href="contact.html" class="btn btn-outline" style="text-align:center; justify-content:center;">Get a Quote</a>
+          <a href="contact.html" class="btn btn-outline" style="justify-content:center;text-align:center;">Get a Quote</a>
         </div>
-
-        <!-- Custom -->
         <div class="pricing-card fade-up stagger-3">
-          <div class="pricing-tier">Custom / E-commerce</div>
-          <div>
-            <div class="pricing-price" style="font-size:2rem;">POA*</div>
-          </div>
-          <div class="pricing-desc">Need something more complex? E-commerce, booking systems, custom integrations — let's talk and we'll quote it properly.</div>
-          <ul class="pricing-features">
-            <li>E-commerce functionality</li>
-            <li>Booking &amp; scheduling systems</li>
-            <li>Custom integrations &amp; APIs</li>
-            <li>Complex functionality</li>
-            <li>Quoted per project scope</li>
+          <div class="tier">Custom / E-commerce</div>
+          <div><div class="price">POA*</div></div>
+          <div class="price-desc">E-commerce, booking systems, custom integrations — let's talk and we'll quote it properly.</div>
+          <ul class="price-features">
+            <li>E-commerce functionality</li><li>Booking &amp; scheduling systems</li><li>Custom integrations &amp; APIs</li><li>Quoted per project scope</li>
           </ul>
-          <a href="contact.html" class="btn btn-outline" style="text-align:center; justify-content:center;">Let's Talk</a>
+          <a href="contact.html" class="btn btn-outline" style="justify-content:center;text-align:center;">Let's Talk</a>
         </div>
       </div>
     </div>
   </section>
 
-  <div class="divider"></div>
-
-  <!-- RECURRING -->
-  <section style="background:var(--black-rich);">
-    <div class="section-inner">
-      <div class="section-header">
-        <span class="label fade-up">Ongoing Rates</span>
-        <h2 class="display-md fade-up stagger-1" style="margin-top:0.75rem;">After launch.<br><em class="text-gold" style="font-style:italic;">We've got you covered.</em></h2>
+  <!-- RECURRING RATES -->
+  <section class="sc">
+    <div class="inner">
+      <div style="margin-bottom:4rem;">
+        <span class="sec-label fade-up">Ongoing Rates</span>
+        <h2 class="fade-up stagger-1" style="font-family:var(--font-display);font-size:clamp(2rem,4vw,3rem);font-weight:300;color:#111;line-height:1.1;margin-top:0.5rem;">After launch.<br><em style="font-style:italic;color:var(--gold-dark);">We've got you covered.</em></h2>
       </div>
-
-      <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap:1.5rem;">
-        <div class="card fade-up">
-          <div class="service-num">Monthly</div>
-          <div style="font-family:var(--font-display); font-size:2.5rem; font-weight:300; background:var(--gold-text); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; margin:0.75rem 0;">$30<span style="font-size:1rem; font-family:var(--font-body); font-weight:300; color:var(--white-muted); -webkit-text-fill-color:var(--white-muted);">/month*</span></div>
-          <div class="service-title" style="font-size:1.25rem; margin-bottom:0.75rem;">Hosting &amp; Maintenance</div>
-          <p style="font-size:0.875rem; color:var(--white-muted); font-weight:300; line-height:1.7;">Cloud hosting, security monitoring, platform updates, and performance checks. Per site, billed monthly.</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.5rem;">
+        <div class="rate-card fade-up">
+          <div class="rate-label">Monthly</div>
+          <div class="rate-price">$30<span style="font-size:1rem;font-family:var(--font-body);font-weight:300;color:#888;">/month*</span></div>
+          <div class="rate-name">Hosting &amp; Maintenance</div>
+          <p class="rate-desc">Cloud hosting, security monitoring, platform updates, and performance checks. Per site, billed monthly.</p>
         </div>
-        <div class="card fade-up stagger-1">
-          <div class="service-num">Hourly</div>
-          <div style="font-family:var(--font-display); font-size:2.5rem; font-weight:300; background:var(--gold-text); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; margin:0.75rem 0;">$75–100<span style="font-size:1rem; font-family:var(--font-body); font-weight:300; color:var(--white-muted); -webkit-text-fill-color:var(--white-muted);">/hr*</span></div>
-          <div class="service-title" style="font-size:1.25rem; margin-bottom:0.75rem;">Support &amp; Changes</div>
-          <p style="font-size:0.875rem; color:var(--white-muted); font-weight:300; line-height:1.7;">Post-launch updates, new pages, content changes, and feature additions. Billed in 30-minute increments.</p>
+        <div class="rate-card fade-up stagger-1">
+          <div class="rate-label">Hourly</div>
+          <div class="rate-price">$75–100<span style="font-size:1rem;font-family:var(--font-body);font-weight:300;color:#888;">/hr*</span></div>
+          <div class="rate-name">Support &amp; Changes</div>
+          <p class="rate-desc">Post-launch updates, new pages, content changes. Billed in 30-minute increments. Fast turnaround.</p>
         </div>
-        <div class="card fade-up stagger-2">
-          <div class="service-num">Project</div>
-          <div style="font-family:var(--font-display); font-size:2.5rem; font-weight:300; background:var(--gold-text); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; margin:0.75rem 0;">From $400<span style="font-size:1rem; font-family:var(--font-body); font-weight:300; color:var(--white-muted); -webkit-text-fill-color:var(--white-muted);">*</span></div>
-          <div class="service-title" style="font-size:1.25rem; margin-bottom:0.75rem;">Branding Package</div>
-          <p style="font-size:0.875rem; color:var(--white-muted); font-weight:300; line-height:1.7;">Logo, colours, typography, brand guidelines, and social media assets. Quoted per project scope.</p>
+        <div class="rate-card fade-up stagger-2">
+          <div class="rate-label">Project</div>
+          <div class="rate-price">From $400<span style="font-size:1rem;font-family:var(--font-body);font-weight:300;color:#888;">*</span></div>
+          <div class="rate-name">Branding Package</div>
+          <p class="rate-desc">Logo, colours, typography, brand guidelines, and social media assets. Quoted per project scope.</p>
         </div>
       </div>
     </div>
   </section>
-
-  <div class="divider"></div>
 
   <!-- PAYMENT TERMS -->
-  <section>
-    <div class="section-inner">
-      <div style="display:grid; grid-template-columns:1fr 1fr; gap:6rem;" class="about-grid">
+  <section class="sw">
+    <div class="inner">
+      <div class="two-col">
         <div>
-          <span class="label fade-up" style="display:block; margin-bottom:1.5rem;">Payment Terms</span>
-          <h2 class="display-sm fade-up stagger-1" style="margin-bottom:1.5rem;">Straightforward.<br><em class="text-gold" style="font-style:italic;">No surprises.</em></h2>
-          <ul class="about-list fade-up stagger-2">
-            <li>50% deposit required before project commences</li>
-            <li>50% final balance due on completion, prior to domain handover</li>
-            <li>Monthly hosting billed on the 1st of each month</li>
-            <li>Hourly work invoiced fortnightly</li>
-            <li>All prices in NZD — GST added once registered</li>
-          </ul>
+          <span class="sec-label fade-up">Payment Terms</span>
+          <h2 class="fade-up stagger-1" style="font-family:var(--font-display);font-size:clamp(1.75rem,3vw,2.5rem);font-weight:300;color:#111;line-height:1.15;margin-bottom:1.5rem;">Straightforward.<br><em style="font-style:italic;color:var(--gold-dark);">No surprises.</em></h2>
+          <div class="fade-up stagger-2">
+            <div class="terms-item"><span>50% deposit required before project commences</span></div>
+            <div class="terms-item"><span>50% final balance due on completion, prior to domain handover</span></div>
+            <div class="terms-item"><span>Monthly hosting billed on the 1st of each month</span></div>
+            <div class="terms-item"><span>Hourly work invoiced fortnightly</span></div>
+            <div class="terms-item"><span>All prices in NZD — GST added once registered</span></div>
+          </div>
         </div>
         <div>
-          <span class="label fade-up" style="display:block; margin-bottom:1.5rem;">What to Expect</span>
-          <h2 class="display-sm fade-up stagger-1" style="margin-bottom:1.5rem;">Honest pricing.<br><em class="text-gold" style="font-style:italic;">Always.</em></h2>
-          <p class="about-text fade-up stagger-2">No hidden fees. No scope creep without discussion. If a project is heading outside the original brief, we'll tell you upfront before we do the work.</p>
-          <p class="about-text fade-up stagger-3">All pricing is marked with * because it's subject to change at Five&amp;Co's discretion — but any quote we give you is locked in for that project. You'll always know what you're paying.</p>
+          <span class="sec-label fade-up">What to Expect</span>
+          <h2 class="fade-up stagger-1" style="font-family:var(--font-display);font-size:clamp(1.75rem,3vw,2.5rem);font-weight:300;color:#111;line-height:1.15;margin-bottom:1.5rem;">Honest pricing.<br><em style="font-style:italic;color:var(--gold-dark);">Always.</em></h2>
+          <p class="fade-up stagger-2" style="font-size:0.9375rem;color:#444;font-weight:300;line-height:1.8;margin-bottom:1.25rem;">No hidden fees. No scope creep without discussion. If a project is heading outside the original brief, we'll tell you upfront before we do the work.</p>
+          <p class="fade-up stagger-3" style="font-size:0.9375rem;color:#444;font-weight:300;line-height:1.8;">All pricing is marked * because it's subject to change at Five&Co's discretion — but any quote we give you is locked in for that project. You'll always know exactly what you're paying.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <div class="divider"></div>
-
-  <section style="padding:5rem 5%; background:var(--black-rich);">
-    <div class="section-inner" style="text-align:center; max-width:600px;">
-      <h2 class="display-sm fade-up" style="margin-bottom:1rem;">Ready to get started?</h2>
-      <p style="color:var(--white-muted); font-size:0.9375rem; font-weight:300; margin-bottom:2rem;" class="fade-up stagger-1">Get a free, no-obligation quote. We'll come back to you within one business day.</p>
-      <div class="fade-up stagger-2">
-        <a href="contact.html" class="btn btn-primary">Get a Free Quote</a>
-      </div>
+  <section class="sd" style="text-align:center;">
+    <div class="inner" style="max-width:600px;position:relative;z-index:1;">
+      <h2 class="fade-up" style="font-family:var(--font-display);font-size:clamp(1.75rem,4vw,3rem);font-weight:300;color:#fff;line-height:1.1;margin-bottom:1rem;">Ready to get started?</h2>
+      <p class="fade-up stagger-1" style="color:rgba(255,255,255,0.55);font-size:0.9375rem;font-weight:300;margin-bottom:2rem;">Free quote. No obligation. Back to you within one business day.</p>
+      <div class="fade-up stagger-2"><a href="contact.html" class="btn btn-primary">Get a Free Quote</a></div>
     </div>
   </section>
 

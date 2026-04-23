@@ -6,59 +6,104 @@
   <title>Services — Five&Co</title>
   <meta name="description" content="Five&Co services: Website Design & Build, Hosting, SEO Foundation, Branding and ongoing support for NZ businesses.">
   <link rel="stylesheet" href="css/style.css">
+  <style>
+    body { background: #fff; color: #111; }
+    .nav { background: #fff; border-bottom: 1px solid rgba(0,0,0,0.08); }
+    .nav.scrolled { background: #fff; backdrop-filter: none; border-bottom: 1px solid rgba(0,0,0,0.1); }
+    .nav-logo { background: linear-gradient(135deg, #B8860B 0%, #D4AF37 50%, #B8860B 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .nav-links a { color: #444; }
+    .nav-links a:hover { color: #111; }
+    .nav-cta { color: var(--gold-dark) !important; border-color: rgba(184,134,11,0.5) !important; }
+    .nav-toggle span { background: #111; }
+
+    .page-header { background: #111; border-bottom: none; }
+
+    .sw { background: #fff; padding: 80px 6%; }
+    .sc { background: #F8F6F1; padding: 80px 6%; }
+    .inner { max-width: 1200px; margin: 0 auto; }
+
+    .sec-label { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold-dark); display: block; margin-bottom: 1rem; }
+    .sec-heading { font-family: var(--font-display); font-size: clamp(2rem,4vw,3.5rem); font-weight: 300; color: #111; line-height: 1.1; }
+    .sec-heading em { font-style: italic; color: var(--gold-dark); }
+
+    .body-text { font-size: 0.9375rem; color: #444; font-weight: 300; line-height: 1.8; margin-bottom: 1.25rem; }
+
+    .feature-list { list-style: none; display: flex; flex-direction: column; gap: 0; }
+    .feature-list li { font-size: 0.9rem; color: #444; font-weight: 300; padding: 0.875rem 0; border-bottom: 1px solid rgba(0,0,0,0.07); display: flex; gap: 1rem; align-items: flex-start; }
+    .feature-list li::before { content: '—'; color: var(--gold-dark); flex-shrink: 0; opacity: 0.7; }
+
+    .price-tag { font-family: var(--font-display); font-size: 2rem; color: var(--gold-dark); margin: 1.5rem 0 0.25rem; }
+    .price-note { font-size: 0.75rem; color: #888; font-weight: 300; }
+
+    .svc-card-light { background: #fff; border: 1px solid rgba(0,0,0,0.08); border-top: 3px solid var(--gold-light); border-radius: 4px; padding: 2.5rem 2rem; transition: var(--transition); }
+    .svc-card-light:hover { transform: translateY(-5px); box-shadow: 0 20px 50px rgba(0,0,0,0.09); }
+    .svc-num { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.15em; color: var(--gold-dark); opacity: 0.6; margin-bottom: 1rem; }
+    .svc-title { font-family: var(--font-display); font-size: 1.5rem; color: #111; margin-bottom: 0.75rem; }
+    .svc-desc { font-size: 0.875rem; color: #555; font-weight: 300; line-height: 1.75; margin-bottom: 1rem; }
+    .svc-price { font-family: var(--font-display); font-size: 1.125rem; color: var(--gold-dark); }
+    .svc-features { list-style:none; margin-top:1.25rem; display:flex; flex-direction:column; gap:0.5rem; }
+    .svc-features li { font-size:0.8125rem; color:#555; font-weight:300; display:flex; gap:0.75rem; align-items:flex-start; }
+    .svc-features li::before { content:'✓'; color:var(--gold-dark); flex-shrink:0; }
+
+    .hosting-box { background: #111; border-radius: 4px; padding: 3rem; text-align: center; }
+
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start; }
+    @media(max-width:900px){ .two-col { grid-template-columns:1fr; gap:3rem; } }
+
+    .cta-strip { background: #111; padding: 80px 6%; text-align: center; }
+  </style>
 </head>
 <body>
   <div id="nav-placeholder"></div>
 
-  <div class="page-header">
-    <div class="page-header-bg"></div>
-    <div class="page-header-inner">
-      <span class="label fade-up" style="display:block; margin-bottom:1rem;">What We Offer</span>
-      <h1 class="display-lg fade-up stagger-1">Our Services</h1>
+  <div class="page-header" style="min-height:35vh;display:flex;align-items:flex-end;padding:calc(var(--nav-height) + 60px) 6% 4rem;position:relative;overflow:hidden;">
+    <div style="position:absolute;inset:0;background:radial-gradient(ellipse 50% 80% at 80% 50%, rgba(212,175,55,0.08) 0%, transparent 70%);"></div>
+    <div style="max-width:1200px;margin:0 auto;width:100%;position:relative;">
+      <span class="sec-label fade-up" style="color:var(--gold-light);">What We Offer</span>
+      <h1 class="fade-up stagger-1" style="font-family:var(--font-display);font-size:clamp(2.5rem,6vw,5rem);font-weight:300;color:#fff;line-height:1;">Our Services</h1>
     </div>
   </div>
 
   <!-- WEBSITE BUILD -->
-  <section>
-    <div class="section-inner">
-      <div style="display:grid; grid-template-columns:1fr 1fr; gap:6rem; align-items:start;" class="about-grid">
+  <section class="sw">
+    <div class="inner">
+      <div class="two-col">
         <div>
-          <span class="label fade-up" style="display:block; margin-bottom:1.5rem;">01 — Core Service</span>
-          <h2 class="display-md fade-up stagger-1" style="margin-bottom:1.5rem;">Website Design <em class="text-gold" style="font-style:italic;">&amp; Build</em></h2>
-          <p class="about-text fade-up stagger-2">Our core service. Every website is designed from scratch to match your brand, your goals, and your audience. No page-builder drag-and-drop rubbish — hand-crafted code that performs and looks incredible on every device.</p>
-          <p class="about-text fade-up stagger-3">We target 90+ Google PageSpeed scores as standard. Because slow websites lose customers, and we're not about letting that happen.</p>
-          <div class="fade-up stagger-4" style="margin-top:2rem;">
-            <div style="font-family:var(--font-display); font-size:1.75rem; background:var(--gold-text); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; margin-bottom:0.25rem;">From $850*</div>
-            <p style="font-size:0.75rem; color:var(--white-muted); font-weight:300;">*All pricing subject to change at Five&amp;Co's discretion</p>
+          <span class="sec-label fade-up">01 — Core Service</span>
+          <h2 class="sec-heading fade-up stagger-1" style="margin-bottom:1.5rem;">Website Design <em>&amp; Build</em></h2>
+          <p class="body-text fade-up stagger-2">Our core service. Every website is designed from scratch to match your brand, your goals, and your audience. No page-builder drag-and-drop rubbish — hand-crafted code that performs and looks incredible on every device.</p>
+          <p class="body-text fade-up stagger-3">We target 90+ Google PageSpeed scores as standard. Because slow websites lose customers, and we're not about letting that happen.</p>
+          <div class="fade-up stagger-4">
+            <div class="price-tag">From $850*</div>
+            <div class="price-note">*All pricing subject to change at Five&Co's discretion</div>
           </div>
         </div>
         <div class="fade-up stagger-2">
-          <ul class="service-features" style="gap:0.875rem;">
-            <li style="font-size:0.9rem; padding:0.75rem 0; border-bottom:1px solid var(--white-faint); color:var(--white-muted); display:flex; gap:0.75rem; font-weight:300;">Custom design tailored to your brand identity</li>
-            <li style="font-size:0.9rem; padding:0.75rem 0; border-bottom:1px solid var(--white-faint); color:var(--white-muted); display:flex; gap:0.75rem; font-weight:300;">Fully responsive — mobile, tablet, and desktop</li>
-            <li style="font-size:0.9rem; padding:0.75rem 0; border-bottom:1px solid var(--white-faint); color:var(--white-muted); display:flex; gap:0.75rem; font-weight:300;">Fast load times — 90+ PageSpeed scores targeted</li>
-            <li style="font-size:0.9rem; padding:0.75rem 0; border-bottom:1px solid var(--white-faint); color:var(--white-muted); display:flex; gap:0.75rem; font-weight:300;">Content integration — text, images, video embeds</li>
-            <li style="font-size:0.9rem; padding:0.75rem 0; border-bottom:1px solid var(--white-faint); color:var(--white-muted); display:flex; gap:0.75rem; font-weight:300;">Contact forms, Google Maps, social media links</li>
-            <li style="font-size:0.9rem; padding:0.75rem 0; border-bottom:1px solid var(--white-faint); color:var(--white-muted); display:flex; gap:0.75rem; font-weight:300;">2 rounds of revisions included in build fee</li>
-            <li style="font-size:0.9rem; padding:0.75rem 0; color:var(--white-muted); display:flex; gap:0.75rem; font-weight:300;">Technical SEO foundation included at no extra cost</li>
+          <ul class="feature-list">
+            <li>Custom design tailored to your brand identity</li>
+            <li>Fully responsive — mobile, tablet, and desktop</li>
+            <li>Fast load times — 90+ PageSpeed scores targeted</li>
+            <li>Content integration — text, images, video embeds</li>
+            <li>Contact forms, Google Maps, social media links</li>
+            <li>2 rounds of revisions included in build fee</li>
+            <li>Technical SEO foundation included at no extra cost</li>
+            <li>Launch &amp; deployment fully managed</li>
           </ul>
         </div>
       </div>
     </div>
   </section>
 
-  <div class="divider"></div>
-
   <!-- HOSTING -->
-  <section style="background: var(--black-rich);">
-    <div class="section-inner">
-      <div style="display:grid; grid-template-columns:1fr 1fr; gap:6rem; align-items:start;" class="about-grid">
+  <section class="sc">
+    <div class="inner">
+      <div class="two-col">
         <div class="fade-up">
-          <div style="background:var(--black-card); border:1px solid var(--gold-border); border-radius:4px; padding:3rem; text-align:center;">
-            <div style="font-size:0.6875rem; font-weight:600; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold-light); margin-bottom:1rem;">Monthly</div>
-            <div style="font-family:var(--font-display); font-size:4rem; font-weight:300; background:var(--gold-text); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; line-height:1; margin-bottom:0.5rem;">$30</div>
-            <div style="font-size:0.875rem; color:var(--white-muted); margin-bottom:2rem;">per site, per month*</div>
-            <div class="tech-row" style="justify-content:center;">
+          <div class="hosting-box">
+            <div style="font-size:0.7rem;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold-light);margin-bottom:1rem;">Monthly Per Site</div>
+            <div style="font-family:var(--font-display);font-size:5rem;font-weight:300;background:var(--gold-text);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;margin-bottom:0.5rem;">$30</div>
+            <div style="font-size:0.875rem;color:rgba(255,255,255,0.5);margin-bottom:2rem;">per site, per month*</div>
+            <div style="display:flex;flex-wrap:wrap;gap:0.75rem;justify-content:center;">
               <div class="tech-pill">Vercel</div>
               <div class="tech-pill">GitHub</div>
               <div class="tech-pill">SSL</div>
@@ -67,74 +112,66 @@
           </div>
         </div>
         <div>
-          <span class="label fade-up" style="display:block; margin-bottom:1.5rem;">02 — Always On</span>
-          <h2 class="display-md fade-up stagger-1" style="margin-bottom:1.5rem;">Hosting <em class="text-gold" style="font-style:italic;">&amp; Deployment</em></h2>
-          <p class="about-text fade-up stagger-2">Five&Co manages all hosting through Vercel and GitHub — the same infrastructure used by the world's fastest-growing tech companies. You get enterprise-grade speed, uptime, and security for a flat $30/month.</p>
-          <ul class="about-list fade-up stagger-3" style="margin-top:1.5rem;">
+          <span class="sec-label fade-up">02 — Always On</span>
+          <h2 class="sec-heading fade-up stagger-1" style="margin-bottom:1.5rem;">Hosting <em>&amp; Deployment</em></h2>
+          <p class="body-text fade-up stagger-2">Five&Co manages all hosting through Vercel and GitHub — the same infrastructure used by the world's fastest-growing tech companies. Enterprise-grade speed, uptime, and security for a flat $30/month.</p>
+          <ul class="feature-list fade-up stagger-3">
             <li>Vercel cloud hosting — global CDN, sub-second load times</li>
             <li>GitHub version control — every change tracked and reversible</li>
             <li>Domain registration &amp; DNS configuration handled end-to-end</li>
             <li>SSL certificate included — HTTPS as standard</li>
             <li>99.99% uptime SLA via Vercel infrastructure</li>
-            <li>Platform updates &amp; security monitoring included</li>
           </ul>
         </div>
       </div>
     </div>
   </section>
 
-  <div class="divider"></div>
-
-  <!-- SEO + BRANDING side by side -->
-  <section>
-    <div class="section-inner">
-      <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap:2rem;">
-        <!-- SEO -->
-        <div class="card fade-up">
-          <div class="service-num">03</div>
-          <div class="service-title" style="font-size:1.75rem; margin-bottom:1rem;">SEO Foundation</div>
-          <p class="service-desc">Included in every build. Technical SEO that gives your site the best possible chance of ranking from day one.</p>
-          <div style="font-family:var(--font-display); font-size:1.125rem; background:var(--gold-text); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; margin-bottom:1.5rem;">Included in every build</div>
-          <ul class="service-features">
-            <li>Page titles &amp; meta descriptions for every page</li>
-            <li>Google Search Console setup &amp; submission</li>
+  <!-- SEO + BRANDING + SUPPORT -->
+  <section class="sw">
+    <div class="inner">
+      <div style="text-align:center;margin-bottom:4rem;">
+        <span class="sec-label fade-up">03, 04 &amp; 05</span>
+        <h2 class="sec-heading fade-up stagger-1" style="margin-top:0.5rem;">The full picture</h2>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:1.5rem;">
+        <div class="svc-card-light fade-up">
+          <div class="svc-num">03</div>
+          <div class="svc-title">SEO Foundation</div>
+          <div class="svc-desc">Included in every build. Technical SEO that gives your site the best possible chance of ranking from day one.</div>
+          <div class="svc-price">Included in every build</div>
+          <ul class="svc-features">
+            <li>Page titles &amp; meta descriptions</li>
+            <li>Google Search Console setup</li>
             <li>Google Analytics 4 integration</li>
-            <li>Sitemap.xml &amp; robots.txt configuration</li>
-            <li>Mobile-first indexing compliance</li>
-            <li>Core Web Vitals optimisation (LCP, FID, CLS)</li>
+            <li>Sitemap.xml &amp; robots.txt</li>
+            <li>Core Web Vitals optimisation</li>
             <li>Image optimisation &amp; alt text</li>
           </ul>
-          <p style="margin-top:1.5rem; font-size:0.75rem; color:rgba(255,255,255,0.3); font-weight:300; line-height:1.6;">Note: Ongoing SEO content strategy — blogging, link building, keyword campaigns — is a separate service available as an add-on.</p>
         </div>
-
-        <!-- BRANDING -->
-        <div class="card fade-up stagger-1">
-          <div class="service-num">04</div>
-          <div class="service-title" style="font-size:1.75rem; margin-bottom:1rem;">Branding &amp; Digital Assets</div>
-          <p class="service-desc">For clients who need more than a website. Foundational brand identity work to ensure everything online looks cohesive and professional.</p>
-          <div style="font-family:var(--font-display); font-size:1.125rem; background:var(--gold-text); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; margin-bottom:1.5rem;">From $400*</div>
-          <ul class="service-features">
+        <div class="svc-card-light fade-up stagger-1">
+          <div class="svc-num">04</div>
+          <div class="svc-title">Branding &amp; Digital Assets</div>
+          <div class="svc-desc">For clients who need more than a website. Foundational brand identity to ensure everything online looks cohesive and professional.</div>
+          <div class="svc-price">From $400*</div>
+          <ul class="svc-features">
             <li>Logo design &amp; brand colour palette</li>
-            <li>Typography selection &amp; brand guidelines</li>
+            <li>Typography &amp; brand guidelines</li>
             <li>Social media profile graphics</li>
             <li>Business card design</li>
             <li>Email signature design</li>
-            <li>Quoted separately per project scope</li>
           </ul>
         </div>
-
-        <!-- SUPPORT -->
-        <div class="card fade-up stagger-2">
-          <div class="service-num">05</div>
-          <div class="service-title" style="font-size:1.75rem; margin-bottom:1rem;">Ongoing Support</div>
-          <p class="service-desc">Websites need love after launch. Straightforward hourly support so you're never stuck waiting for changes to happen.</p>
-          <div style="font-family:var(--font-display); font-size:1.125rem; background:var(--gold-text); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; margin-bottom:1.5rem;">$75–$100 / hour*</div>
-          <ul class="service-features">
+        <div class="svc-card-light fade-up stagger-2">
+          <div class="svc-num">05</div>
+          <div class="svc-title">Ongoing Support</div>
+          <div class="svc-desc">Websites need love after launch. Straightforward hourly support so you're never stuck waiting for changes.</div>
+          <div class="svc-price">$75–$100 / hour*</div>
+          <ul class="svc-features">
             <li>Billed in 30-minute increments</li>
             <li>Content updates &amp; copy changes</li>
             <li>New pages or sections added</li>
             <li>Performance optimisation</li>
-            <li>Feature additions</li>
             <li>Fast turnaround, clear communication</li>
           </ul>
         </div>
@@ -142,16 +179,12 @@
     </div>
   </section>
 
-  <div class="divider"></div>
-
-  <!-- CTA -->
-  <section style="padding:5rem 5%; background:var(--black-rich);">
-    <div class="section-inner" style="text-align:center; max-width:600px;">
-      <h2 class="display-sm fade-up" style="margin-bottom:1rem;">Not sure what you need?</h2>
-      <p style="color:var(--white-muted); font-size:0.9375rem; font-weight:300; margin-bottom:2rem;" class="fade-up stagger-1">That's what the free quote is for. Tell us about your business and we'll figure out the best path forward together.</p>
-      <div class="fade-up stagger-2">
-        <a href="contact.html" class="btn btn-primary">Get a Free Quote</a>
-      </div>
+  <section class="cta-strip">
+    <div class="inner" style="max-width:600px;">
+      <span class="sec-label fade-up" style="color:var(--gold-light);">Not sure what you need?</span>
+      <h2 class="fade-up stagger-1" style="font-family:var(--font-display);font-size:clamp(1.75rem,4vw,3rem);font-weight:300;color:#fff;line-height:1.1;margin:0.75rem 0 1.25rem;">That's what the free<br><em class="text-gold" style="font-style:italic;">quote is for.</em></h2>
+      <p class="fade-up stagger-2" style="color:rgba(255,255,255,0.55);font-size:0.9375rem;font-weight:300;margin-bottom:2rem;">Tell us about your business and we'll figure out the best path forward together.</p>
+      <div class="fade-up stagger-3"><a href="contact.html" class="btn btn-primary">Get a Free Quote</a></div>
     </div>
   </section>
 

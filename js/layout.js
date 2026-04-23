@@ -1,4 +1,3 @@
-// Shared nav HTML
 const NAV_HTML = `
 <nav class="nav" id="nav">
   <a href="index.html" class="nav-logo">Five&amp;Co</a>
@@ -16,23 +15,22 @@ const NAV_HTML = `
 `;
 
 const FOOTER_HTML = `
-<footer>
-  <div class="footer-inner">
+<footer style="background:#111;border-top:1px solid rgba(212,175,55,0.2);padding:3rem 5%;">
+  <div style="max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.5rem;">
     <div>
-      <div class="footer-brand">Five&amp;Co</div>
-      <div class="footer-tagline">Digital Design &amp; Web Strategy</div>
+      <div style="font-family:'Cormorant Garamond',Georgia,serif;font-size:1.25rem;font-weight:400;background:linear-gradient(135deg,#D4AF37 0%,#F0C040 50%,#B8860B 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Five&amp;Co</div>
+      <div style="font-size:0.75rem;color:rgba(255,255,255,0.4);font-weight:300;letter-spacing:0.05em;margin-top:0.25rem;">Digital Design &amp; Web Strategy</div>
     </div>
-    <ul class="footer-links">
-      <li><a href="services.html">Services</a></li>
-      <li><a href="pricing.html">Pricing</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="contact.html">Contact</a></li>
+    <ul style="display:flex;gap:2rem;list-style:none;flex-wrap:wrap;">
+      <li><a href="services.html" style="font-size:0.75rem;color:rgba(255,255,255,0.45);text-decoration:none;letter-spacing:0.1em;text-transform:uppercase;font-weight:500;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">Services</a></li>
+      <li><a href="pricing.html" style="font-size:0.75rem;color:rgba(255,255,255,0.45);text-decoration:none;letter-spacing:0.1em;text-transform:uppercase;font-weight:500;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">Pricing</a></li>
+      <li><a href="about.html" style="font-size:0.75rem;color:rgba(255,255,255,0.45);text-decoration:none;letter-spacing:0.1em;text-transform:uppercase;font-weight:500;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">About</a></li>
+      <li><a href="contact.html" style="font-size:0.75rem;color:rgba(255,255,255,0.45);text-decoration:none;letter-spacing:0.1em;text-transform:uppercase;font-weight:500;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">Contact</a></li>
     </ul>
-    <div class="footer-copy">© 2026 Five&amp;Co · fiveandco.co.nz</div>
+    <div style="font-size:0.75rem;color:rgba(255,255,255,0.25);font-weight:300;">© 2026 Five&amp;Co · fiveandco.co.nz</div>
   </div>
 </footer>
 `;
 
-// Inject nav and footer
 document.getElementById('nav-placeholder').innerHTML = NAV_HTML;
 document.getElementById('footer-placeholder').innerHTML = FOOTER_HTML;

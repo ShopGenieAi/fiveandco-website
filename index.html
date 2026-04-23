@@ -6,160 +6,278 @@
   <title>Five&Co — Digital Design & Web Strategy</title>
   <meta name="description" content="Five&Co builds powerful, fast, professional websites for New Zealand businesses. Custom design, modern tech stack, honest pricing.">
   <link rel="stylesheet" href="css/style.css">
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='28' fill='%23D4AF37'%3E5%26%3C/text%3E%3C/svg%3E">
+  <style>
+    body { background: var(--black); }
+    .nav { background: transparent; }
+    .nav.scrolled { background: rgba(10,10,10,0.97); backdrop-filter: blur(20px); border-bottom: 1px solid var(--gold-border); }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      padding: calc(var(--nav-height) + 40px) 6% 120px;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 70% 60% at 80% 40%, rgba(212,175,55,0.07) 0%, transparent 65%),
+        radial-gradient(ellipse 50% 70% at 10% 90%, rgba(184,134,11,0.05) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .hero-grid {
+      position: absolute; inset: 0;
+      background-image: linear-gradient(rgba(212,175,55,0.035) 1px, transparent 1px), linear-gradient(90deg, rgba(212,175,55,0.035) 1px, transparent 1px);
+      background-size: 70px 70px;
+      mask-image: radial-gradient(ellipse 100% 100% at 50% 50%, black 0%, transparent 100%);
+      pointer-events: none;
+    }
+    .hero-inner { max-width: 1300px; margin: 0 auto; width: 100%; position: relative; z-index: 2; }
+
+    .hero-eyebrow { display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem; }
+    .hero-eyebrow::before { content: ''; display: block; width: 50px; height: 1px; background: var(--gold-gradient); }
+    .hero-eyebrow span { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold-light); }
+
+    .hero-brand {
+      display: block;
+      font-family: var(--font-display);
+      font-size: clamp(5.5rem, 15vw, 15rem);
+      font-weight: 300;
+      line-height: 0.88;
+      letter-spacing: -0.03em;
+      background: var(--gold-text);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.25em;
+    }
+
+    .hero-tagline {
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 4vw, 4rem);
+      font-weight: 300;
+      color: var(--white);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin-bottom: 2rem;
+      max-width: 860px;
+    }
+    .hero-tagline em { font-style: italic; color: rgba(255,255,255,0.45); }
+
+    .hero-sub { font-size: 1rem; font-weight: 300; color: rgba(255,255,255,0.6); max-width: 500px; line-height: 1.8; margin-bottom: 3rem; }
+
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 5rem; }
+
+    .hero-stats { display: flex; gap: 4rem; padding-top: 3rem; border-top: 1px solid rgba(255,255,255,0.1); flex-wrap: wrap; }
+    .stat-val { font-family: var(--font-display); font-size: 3rem; font-weight: 300; background: var(--gold-text); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1; margin-bottom: 0.3rem; }
+    .stat-label { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.4); }
+
+    .scroll-hint { position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 0.5rem; z-index: 2; }
+    .scroll-hint span { font-size: 0.625rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.25); }
+    .scroll-line { width: 1px; height: 50px; background: linear-gradient(to bottom, var(--gold-light), transparent); animation: scrollPulse 2s ease-in-out infinite; }
+    @keyframes scrollPulse { 0%,100%{opacity:0.3} 50%{opacity:1} }
+
+    /* WHITE SECTIONS */
+    .sw { background: #fff; color: #111; padding: 100px 6%; }
+    .sc { background: #F8F6F1; color: #111; padding: 100px 6%; }
+    .sd { background: #111111; color: #fff; padding: 100px 6%; position: relative; overflow: hidden; }
+    .sd::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse 60% 80% at 50% 50%, rgba(212,175,55,0.06) 0%, transparent 70%); pointer-events:none; }
+
+    .inner { max-width: 1200px; margin: 0 auto; }
+
+    .sec-label { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold-dark); display: block; margin-bottom: 1rem; }
+    .sec-label-light { color: var(--gold-light); }
+
+    .sec-heading-dark { font-family: var(--font-display); font-size: clamp(2rem,4vw,3.5rem); font-weight: 300; color: #111; line-height: 1.1; }
+    .sec-heading-dark em { font-style: italic; color: var(--gold-dark); }
+    .sec-heading-light { font-family: var(--font-display); font-size: clamp(2rem,4vw,3.5rem); font-weight: 300; color: #fff; line-height: 1.1; }
+
+    /* SERVICE CARDS LIGHT */
+    .svc-card { background: #fff; border: 1px solid rgba(0,0,0,0.07); border-top: 3px solid var(--gold-light); border-radius: 4px; padding: 2.5rem 2rem; transition: var(--transition); }
+    .svc-card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(0,0,0,0.1); }
+    .svc-num { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.15em; color: var(--gold-dark); opacity: 0.7; margin-bottom: 1rem; }
+    .svc-title { font-family: var(--font-display); font-size: 1.5rem; color: #111; margin-bottom: 0.75rem; }
+    .svc-desc { font-size: 0.875rem; color: #555; font-weight: 300; line-height: 1.75; margin-bottom: 1rem; }
+    .svc-price { font-family: var(--font-display); font-size: 1.125rem; color: var(--gold-dark); }
+
+    /* VALUE CARDS LIGHT */
+    .val-card { background: #fff; border: 1px solid rgba(0,0,0,0.07); border-radius: 4px; padding: 2rem; text-align: center; transition: var(--transition); }
+    .val-card:hover { box-shadow: 0 10px 40px rgba(0,0,0,0.08); transform: translateY(-4px); }
+    .val-icon { width:48px; height:48px; margin:0 auto 1.25rem; border:1px solid rgba(212,175,55,0.35); border-radius:50%; display:flex; align-items:center; justify-content:center; background:rgba(212,175,55,0.06); }
+    .val-icon svg { width:20px; height:20px; stroke:var(--gold-dark); fill:none; stroke-width:1.5; }
+    .val-title { font-family: var(--font-display); font-size: 1.125rem; color: #111; margin-bottom: 0.5rem; }
+    .val-desc { font-size: 0.8125rem; color: #555; font-weight: 300; line-height: 1.7; }
+
+    @media(max-width:768px){
+      .hero-brand{font-size:clamp(4rem,20vw,8rem);}
+      .hero-tagline{font-size:clamp(1.5rem,6vw,2.5rem);}
+      .hero-stats{gap:2rem;}
+      .stat-val{font-size:2rem;}
+    }
+  </style>
 </head>
 <body>
   <div id="nav-placeholder"></div>
 
-  <!-- HERO -->
+  <!-- HERO — ALL BLACK -->
   <section class="hero">
     <div class="hero-bg"></div>
     <div class="hero-grid"></div>
     <div class="hero-inner">
       <div class="hero-eyebrow fade-up">
-        <span class="label">Five&Co · fiveandco.co.nz</span>
+        <span>New Zealand · Digital Design & Web Strategy</span>
       </div>
-      <h1 class="display-xl hero-title fade-up stagger-1">
-        Your website<br>should work as<br>hard as <em class="text-gold">you do.</em>
+
+      <span class="hero-brand fade-up stagger-1">Five&amp;Co</span>
+
+      <h1 class="hero-tagline fade-up stagger-2">
+        Your website should work<br>as hard as <em>you do.</em>
       </h1>
-      <p class="body-lg hero-subtitle fade-up stagger-2" style="color:var(--white-muted)">
-        Five&Co builds fast, beautiful, professional websites for NZ businesses — without the agency price tag or the runaround.
+
+      <p class="hero-sub fade-up stagger-3">
+        We build fast, beautiful, professional websites for NZ businesses — without the agency price tag or the runaround.
       </p>
-      <div class="hero-actions fade-up stagger-3">
+
+      <div class="hero-actions fade-up stagger-4">
         <a href="contact.html" class="btn btn-primary">Get a Free Quote</a>
-        <a href="services.html" class="btn btn-outline">See Our Services</a>
+        <a href="services.html" class="btn btn-ghost">See Our Services</a>
       </div>
-      <div class="hero-stat-row fade-up stagger-4">
-        <div>
-          <div class="hero-stat-value">90+</div>
-          <div class="hero-stat-label">PageSpeed Score</div>
-        </div>
-        <div>
-          <div class="hero-stat-value">$850</div>
-          <div class="hero-stat-label">Starting From</div>
-        </div>
-        <div>
-          <div class="hero-stat-value">100%</div>
-          <div class="hero-stat-label">Custom Code</div>
-        </div>
-        <div>
-          <div class="hero-stat-value">NZ</div>
-          <div class="hero-stat-label">Proudly Based</div>
-        </div>
+
+      <div class="hero-stats fade-up stagger-4">
+        <div><div class="stat-val">90+</div><div class="stat-label">PageSpeed Score</div></div>
+        <div><div class="stat-val">$850</div><div class="stat-label">Starting From</div></div>
+        <div><div class="stat-val">100%</div><div class="stat-label">Custom Code</div></div>
+        <div><div class="stat-val">NZ</div><div class="stat-label">Proudly Based</div></div>
       </div>
+    </div>
+    <div class="scroll-hint">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
     </div>
   </section>
 
-  <div class="divider"></div>
-
-  <!-- INTRO STRIP -->
-  <section style="padding: 4rem 5%; background: var(--black-rich);">
-    <div class="section-inner">
-      <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 3rem; align-items: start;">
+  <!-- INTRO — WHITE -->
+  <section class="sw">
+    <div class="inner">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:3rem;">
         <div class="fade-up">
-          <span class="label" style="display:block; margin-bottom:0.75rem;">No page builders</span>
-          <p style="font-size:0.875rem; color:var(--white-muted); font-weight:300; line-height:1.75;">
-            Every Five&Co site is hand-coded from scratch. No Wix. No WordPress. No cookie-cutter templates that look like every other business on the internet.
-          </p>
+          <span class="sec-label">No page builders</span>
+          <p style="font-size:0.9375rem;color:#444;font-weight:300;line-height:1.8;">Every Five&Co site is hand-coded from scratch. No Wix. No WordPress. No cookie-cutter templates that look like every other business on the internet.</p>
         </div>
         <div class="fade-up stagger-1">
-          <span class="label" style="display:block; margin-bottom:0.75rem;">Enterprise infrastructure</span>
-          <p style="font-size:0.875rem; color:var(--white-muted); font-weight:300; line-height:1.75;">
-            Deployed on Vercel — the same platform trusted by Airbnb, TikTok, and thousands of global brands. Global CDN, 99.99% uptime, and free SSL as standard.
-          </p>
+          <span class="sec-label">Enterprise infrastructure</span>
+          <p style="font-size:0.9375rem;color:#444;font-weight:300;line-height:1.8;">Deployed on Vercel — the same platform trusted by Airbnb, TikTok, and thousands of global brands. Global CDN, 99.99% uptime, free SSL standard.</p>
         </div>
         <div class="fade-up stagger-2">
-          <span class="label" style="display:block; margin-bottom:0.75rem;">Kiwi roots, global quality</span>
-          <p style="font-size:0.875rem; color:var(--white-muted); font-weight:300; line-height:1.75;">
-            Proudly NZ-based. We work with small-to-medium Kiwi businesses who deserve a website that punches well above their weight.
-          </p>
+          <span class="sec-label">Kiwi roots, global quality</span>
+          <p style="font-size:0.9375rem;color:#444;font-weight:300;line-height:1.8;">Proudly NZ-based. We work with small-to-medium Kiwi businesses who deserve a website that punches well above their weight.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <div class="divider"></div>
-
-  <!-- SERVICES PREVIEW -->
-  <section>
-    <div class="section-inner">
-      <div class="section-header">
-        <span class="label fade-up">What We Offer</span>
-        <h2 class="display-md fade-up stagger-1" style="margin-top:0.75rem;">
-          Everything you need.<br><em class="text-gold" style="font-style:italic;">Nothing you don't.</em>
-        </h2>
+  <!-- SERVICES — CREAM -->
+  <section class="sc">
+    <div class="inner">
+      <div style="margin-bottom:4rem;">
+        <span class="sec-label fade-up">What We Offer</span>
+        <h2 class="sec-heading-dark fade-up stagger-1" style="margin-top:0.5rem;">Everything you need.<br><em>Nothing you don't.</em></h2>
       </div>
-
-      <div class="services-grid">
-        <div class="service-item fade-up">
-          <div class="service-num">01</div>
-          <div class="service-title">Website Design & Build</div>
-          <div class="service-desc">Custom-designed, hand-coded websites built to your brand, your goals, and your audience. Fast by default, beautiful always.</div>
-          <div class="service-price">From $850*</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.5rem;">
+        <div class="svc-card fade-up">
+          <div class="svc-num">01</div>
+          <div class="svc-title">Website Design & Build</div>
+          <div class="svc-desc">Custom-designed, hand-coded websites built to your brand, your goals, and your audience. Fast by default, beautiful always.</div>
+          <div class="svc-price">From $850*</div>
         </div>
-        <div class="service-item fade-up stagger-1">
-          <div class="service-num">02</div>
-          <div class="service-title">Hosting & Deployment</div>
-          <div class="service-desc">Enterprise-grade cloud hosting via Vercel and GitHub. Global CDN, sub-second load times, SSL included. Managed end-to-end.</div>
-          <div class="service-price">$30 / month*</div>
+        <div class="svc-card fade-up stagger-1">
+          <div class="svc-num">02</div>
+          <div class="svc-title">Hosting & Deployment</div>
+          <div class="svc-desc">Enterprise-grade cloud hosting via Vercel and GitHub. Global CDN, sub-second load times, SSL included. Managed end-to-end.</div>
+          <div class="svc-price">$30 / month*</div>
         </div>
-        <div class="service-item fade-up stagger-2">
-          <div class="service-num">03</div>
-          <div class="service-title">SEO Foundation</div>
-          <div class="service-desc">Included in every build. Technical SEO that gives your site the best possible start on Google — from day one, not day 90.</div>
-          <div class="service-price">Included</div>
+        <div class="svc-card fade-up stagger-2">
+          <div class="svc-num">03</div>
+          <div class="svc-title">SEO Foundation</div>
+          <div class="svc-desc">Included in every build. Technical SEO that gives your site the best possible start on Google — from day one, not day 90.</div>
+          <div class="svc-price">Included</div>
         </div>
-        <div class="service-item fade-up stagger-3">
-          <div class="service-num">04</div>
-          <div class="service-title">Branding & Identity</div>
-          <div class="service-desc">Logo, colours, typography, brand guidelines. Everything you need to look cohesive and professional across every touchpoint.</div>
-          <div class="service-price">From $400*</div>
+        <div class="svc-card fade-up stagger-3">
+          <div class="svc-num">04</div>
+          <div class="svc-title">Branding & Identity</div>
+          <div class="svc-desc">Logo, colours, typography, brand guidelines. Everything you need to look cohesive and professional across every touchpoint.</div>
+          <div class="svc-price">From $400*</div>
         </div>
       </div>
-
-      <div style="text-align:center; margin-top:3rem;" class="fade-up">
-        <a href="services.html" class="btn btn-outline">View All Services</a>
+      <div style="text-align:center;margin-top:3rem;" class="fade-up">
+        <a href="services.html" class="btn btn-primary">View All Services</a>
       </div>
     </div>
   </section>
 
-  <div class="divider"></div>
-
-  <!-- MISSION -->
-  <section style="background: var(--black-rich);">
-    <div class="section-inner" style="text-align:center; max-width:800px;">
-      <span class="label fade-up" style="display:block; margin-bottom:2rem;">Our Mission</span>
-      <blockquote class="fade-up stagger-1" style="font-family:var(--font-display); font-size:clamp(1.5rem,3vw,2.25rem); font-weight:300; line-height:1.4; font-style:italic; color:var(--white);">
+  <!-- MISSION — DARK -->
+  <section class="sd">
+    <div class="inner" style="max-width:860px;text-align:center;">
+      <span class="sec-label sec-label-light fade-up" style="color:var(--gold-light);">Our Mission</span>
+      <blockquote class="fade-up stagger-1" style="font-family:var(--font-display);font-size:clamp(1.5rem,3.5vw,2.75rem);font-weight:300;line-height:1.4;font-style:italic;color:#fff;margin-top:1rem;">
         "Five&Co exists to give every business — big or small — a powerful, fast, professional online presence without the agency price tag or the runaround."
       </blockquote>
-      <div class="gold-line fade-up stagger-2" style="justify-content:center; margin-top:2rem;">
-        <span class="label">Five&Co · 2026</span>
+      <div style="display:flex;align-items:center;gap:1rem;margin-top:2rem;justify-content:center;" class="fade-up stagger-2">
+        <div style="height:1px;width:40px;background:var(--gold-gradient);"></div>
+        <span style="font-size:0.7rem;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold-light);">Five&Co · 2026</span>
+        <div style="height:1px;width:40px;background:var(--gold-gradient);"></div>
       </div>
     </div>
   </section>
 
-  <div class="divider"></div>
-
-  <!-- CTA BANNER -->
-  <section style="padding: 6rem 5%;">
-    <div class="section-inner">
-      <div class="card" style="text-align:center; padding:4rem 2rem; background: linear-gradient(160deg, rgba(212,175,55,0.07) 0%, var(--black-card) 60%);">
-        <span class="label fade-up" style="display:block; margin-bottom:1rem;">Ready when you are</span>
-        <h2 class="display-md fade-up stagger-1" style="margin-bottom:1.5rem;">
-          Let's build something<br><em class="text-gold" style="font-style:italic;">worth talking about.</em>
-        </h2>
-        <p style="color:var(--white-muted); font-size:0.9375rem; font-weight:300; max-width:480px; margin:0 auto 2.5rem;" class="fade-up stagger-2">
-          Get a free, no-obligation quote. Tell us about your project and we'll come back to you within one business day.
-        </p>
-        <div class="fade-up stagger-3">
-          <a href="contact.html" class="btn btn-primary" style="font-size:0.8125rem;">Start a Conversation</a>
+  <!-- VALUES — WHITE -->
+  <section class="sw">
+    <div class="inner">
+      <div style="text-align:center;margin-bottom:4rem;">
+        <span class="sec-label fade-up">What We Stand For</span>
+        <h2 class="sec-heading-dark fade-up stagger-1" style="margin-top:0.5rem;">Our Values</h2>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.5rem;">
+        <div class="val-card fade-up">
+          <div class="val-icon"><svg viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg></div>
+          <div class="val-title">Speed First</div>
+          <div class="val-desc">90+ PageSpeed scores aren't a bonus — they're the floor.</div>
         </div>
+        <div class="val-card fade-up stagger-1">
+          <div class="val-icon"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
+          <div class="val-title">Honest Pricing</div>
+          <div class="val-desc">No hidden fees. No fluff. The price quoted is the price you pay.</div>
+        </div>
+        <div class="val-card fade-up stagger-2">
+          <div class="val-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M9 3a4 4 0 1 0 0 8 4 4 0 0 0 0-8z"/></svg></div>
+          <div class="val-title">Real Relationships</div>
+          <div class="val-desc">We treat every client like our only client. Always responsive, always invested.</div>
+        </div>
+        <div class="val-card fade-up stagger-3">
+          <div class="val-icon"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></div>
+          <div class="val-title">Kiwi Roots</div>
+          <div class="val-desc">Proudly NZ-based. Internationally competitive. Built for businesses like yours.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA — DARK -->
+  <section class="sd" style="text-align:center;">
+    <div class="inner" style="max-width:700px;">
+      <span class="sec-label fade-up" style="color:var(--gold-light);">Ready when you are</span>
+      <h2 class="sec-heading-light fade-up stagger-1" style="margin:0.75rem 0 1.5rem;">Let's build something<br><em class="text-gold" style="font-style:italic;">worth talking about.</em></h2>
+      <p class="fade-up stagger-2" style="color:rgba(255,255,255,0.55);font-size:1rem;font-weight:300;max-width:480px;margin:0 auto 2.5rem;line-height:1.8;">Free quote. No obligation. We'll come back to you within one business day.</p>
+      <div class="fade-up stagger-3" style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+        <a href="contact.html" class="btn btn-primary">Start a Conversation</a>
+        <a href="pricing.html" class="btn btn-ghost">View Pricing</a>
       </div>
     </div>
   </section>
 
   <div id="footer-placeholder"></div>
-
   <script src="js/layout.js"></script>
   <script src="js/main.js"></script>
 </body>
