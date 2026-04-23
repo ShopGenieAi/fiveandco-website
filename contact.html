@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact — Five&Co</title>
+  <meta name="description" content="Get a free, no-obligation quote from Five&Co. We'll come back to you within one business day.">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div id="nav-placeholder"></div>
+
+  <div class="page-header">
+    <div class="page-header-bg"></div>
+    <div class="page-header-inner">
+      <span class="label fade-up" style="display:block; margin-bottom:1rem;">Let's Talk</span>
+      <h1 class="display-lg fade-up stagger-1">Get a Free Quote</h1>
+    </div>
+  </div>
+
+  <section>
+    <div class="section-inner">
+      <div class="contact-grid">
+        <!-- LEFT: INFO -->
+        <div>
+          <p class="about-text fade-up" style="margin-bottom:2.5rem;">Tell us about your project. No obligation, no sales pitch. Just a straightforward conversation about what you need and how we can help.</p>
+          <p class="about-text fade-up stagger-1" style="margin-bottom:3rem;">We'll come back to you within <strong style="color:var(--white); font-weight:500;">one business day</strong>.</p>
+
+          <div class="fade-up stagger-2">
+            <div class="contact-info-item">
+              <span class="contact-info-label">Email</span>
+              <a href="mailto:hello@fiveandco.co.nz" class="contact-info-value">hello@fiveandco.co.nz</a>
+            </div>
+            <div class="contact-info-item">
+              <span class="contact-info-label">Website</span>
+              <a href="https://fiveandco.co.nz" class="contact-info-value">fiveandco.co.nz</a>
+            </div>
+            <div class="contact-info-item">
+              <span class="contact-info-label">Based In</span>
+              <span class="contact-info-value">New Zealand — Remote-First</span>
+            </div>
+            <div class="contact-info-item">
+              <span class="contact-info-label">Response Time</span>
+              <span class="contact-info-value">Within 1 business day</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT: FORM -->
+        <div class="fade-up stagger-2">
+          <form class="form" id="contactForm" novalidate>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="firstName">First Name</label>
+                <input type="text" id="firstName" name="firstName" class="form-input" placeholder="Your first name" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="lastName">Last Name</label>
+                <input type="text" id="lastName" name="lastName" class="form-input" placeholder="Your last name">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="email">Email Address</label>
+              <input type="email" id="email" name="email" class="form-input" placeholder="you@yourbusiness.co.nz" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="business">Business Name</label>
+              <input type="text" id="business" name="business" class="form-input" placeholder="Your business name">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="service">I'm interested in</label>
+              <select id="service" name="service" class="form-select">
+                <option value="" disabled selected>Select a service</option>
+                <option value="starter">Website Build — Starter (up to 3 pages)</option>
+                <option value="business">Website Build — Business (up to 6 pages)</option>
+                <option value="premium">Website Build — Premium (up to 10 pages)</option>
+                <option value="custom">Custom / E-commerce — Let's talk</option>
+                <option value="branding">Branding &amp; Digital Assets</option>
+                <option value="hosting">Hosting &amp; Maintenance only</option>
+                <option value="unsure">Not sure yet — help me figure it out</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="budget">Budget Range (NZD)</label>
+              <select id="budget" name="budget" class="form-select">
+                <option value="" disabled selected>Select a budget range</option>
+                <option value="under1k">Under $1,000</option>
+                <option value="1k-2k">$1,000 – $2,000</option>
+                <option value="2k-3.5k">$2,000 – $3,500</option>
+                <option value="3.5k+">$3,500+</option>
+                <option value="unsure">Not sure yet</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="timeline">Ideal Timeline</label>
+              <select id="timeline" name="timeline" class="form-select">
+                <option value="" disabled selected>When do you need this done?</option>
+                <option value="asap">As soon as possible</option>
+                <option value="1month">Within 1 month</option>
+                <option value="3months">Within 3 months</option>
+                <option value="flexible">Flexible — no rush</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="message">Tell Us About Your Project</label>
+              <textarea id="message" name="message" class="form-textarea" placeholder="What does your business do? What do you need your website to achieve? Any existing website we should know about? The more detail the better." required></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center; font-size:0.8125rem;">
+              Send Enquiry
+            </button>
+
+            <p style="font-size:0.75rem; color:rgba(255,255,255,0.3); font-weight:300; text-align:center; margin-top:0.5rem;">
+              We'll respond within one business day. No spam, ever.
+            </p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SUCCESS NOTIFICATION -->
+  <div class="notification" id="notification">
+    ✓ &nbsp; Message sent! We'll be in touch within one business day.
+  </div>
+
+  <div id="footer-placeholder"></div>
+  <script src="js/layout.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    const form = document.getElementById('contactForm');
+    const notification = document.getElementById('notification');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const firstName = document.getElementById('firstName').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const message = document.getElementById('message').value.trim();
+
+      if (!firstName || !email || !message) {
+        notification.textContent = '⚠  Please fill in your name, email, and project details.';
+        notification.classList.remove('success');
+        notification.classList.add('show');
+        setTimeout(() => notification.classList.remove('show'), 4000);
+        return;
+      }
+
+      // In production, replace this with a real form submission (e.g. Formspree, Netlify Forms, etc.)
+      const submitBtn = form.querySelector('button[type="submit"]');
+      submitBtn.textContent = 'Sending...';
+      submitBtn.disabled = true;
+
+      setTimeout(() => {
+        notification.textContent = '✓  Message sent! We\'ll be in touch within one business day.';
+        notification.classList.add('success', 'show');
+        form.reset();
+        submitBtn.textContent = 'Send Enquiry';
+        submitBtn.disabled = false;
+        setTimeout(() => notification.classList.remove('show'), 5000);
+      }, 1200);
+    });
+  </script>
+</body>
+</html>
