@@ -18,7 +18,7 @@
   --gold-border-strong: rgba(212,175,55,0.6);
   --font-display: 'Cormorant Garamond', Georgia, serif;
   --font-body: 'Montserrat', sans-serif;
-  --nav-height: 90px;
+  --nav-height: 80px;
   --section-pad: 120px;
   --transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
