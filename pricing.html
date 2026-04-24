@@ -48,7 +48,7 @@
 
     .terms-item { padding:1.25rem 0; border-bottom:1px solid rgba(0,0,0,0.07); display:flex; gap:1rem; align-items:flex-start; }
     .terms-item::before { content:'—'; color:var(--gold-dark); flex-shrink:0; font-weight:600; }
-    .terms-item span { font-size:0.9rem; color:#222; font-weight:300; line-height:1.6; }
+    .terms-item span { font-size:0.9rem; color:#111; font-weight:400; line-height:1.6; }
 
     .two-col { display:grid; grid-template-columns:1fr 1fr; gap:5rem; }
     @media(max-width:900px){ .two-col{grid-template-columns:1fr;gap:3rem;} }
@@ -73,42 +73,33 @@
         <h2 class="fade-up stagger-1" style="font-family:var(--font-display);font-size:clamp(2rem,4vw,3.5rem);font-weight:300;color:#111;line-height:1.1;margin-top:0.5rem;">Pick your package.<br><em style="font-style:italic;color:var(--gold-dark);">Or we'll figure it out together.</em></h2>
         <p class="fade-up stagger-2" style="color:#333;font-size:0.9375rem;font-weight:300;max-width:500px;margin-top:1rem;line-height:1.85;">Not sure which suits you? Get in touch and we'll work it out. These are guidelines, not rigid boxes.</p>
       </div>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.5rem;">
-        <div class="pricing-card fade-up">
-          <div class="tier">Starter</div>
-          <div><div class="price">$850<span class="price-range"> – $1,200*</span></div></div>
-          <div class="price-desc">Perfect for small businesses and sole traders who need a clean, professional web presence fast.</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2rem;max-width:900px;">
+        <div class="pricing-card featured fade-up stagger-1" style="padding:3rem 2.5rem;">
+          <div class="tier">Website Design &amp; Build</div>
+          <div><div class="price">From $950<span class="price-range">*</span></div></div>
+          <div class="price-desc">Every project is scoped and quoted individually based on your needs, your brand and what you want to achieve. No packages, no guesswork. Just a straight quote for exactly what you need.</div>
           <ul class="price-features">
-            <li>Up to 3 pages</li><li>Custom design to your brand</li><li>Fully responsive</li><li>Technical SEO setup</li><li>Contact form</li><li>2 rounds of revisions</li><li>Launch &amp; deployment</li>
-          </ul>
-          <a href="contact.html" class="btn btn-outline" style="justify-content:center;text-align:center;">Get a Quote</a>
-        </div>
-        <div class="pricing-card featured fade-up stagger-1">
-          <div class="tier">Business</div>
-          <div><div class="price">$1,200<span class="price-range"> – $2,000*</span></div></div>
-          <div class="price-desc">For established businesses that need a full web presence with more content, functionality, and polish.</div>
-          <ul class="price-features">
-            <li>Up to 6 pages</li><li>Everything in Starter</li><li>Blog setup</li><li>Gallery or portfolio section</li><li>Advanced contact forms</li><li>Google Maps integration</li><li>Social media integration</li>
+            <li>Custom design to your brand</li>
+            <li>Fully responsive across all devices</li>
+            <li>Technical SEO included as standard</li>
+            <li>Contact forms and integrations</li>
+            <li>Two rounds of revisions included</li>
+            <li>Full launch and deployment handled</li>
           </ul>
           <a href="contact.html" class="btn btn-primary" style="justify-content:center;text-align:center;">Get a Quote</a>
         </div>
-        <div class="pricing-card fade-up stagger-2">
-          <div class="tier">Premium</div>
-          <div><div class="price">$2,000<span class="price-range"> – $3,500*</span></div></div>
-          <div class="price-desc">For businesses that want the full package. Website, branding and advanced features all under one roof.</div>
+        <div class="pricing-card fade-up stagger-2" style="padding:3rem 2.5rem;">
+          <div class="tier">Not Sure What You Need?</div>
+          <div><div class="price" style="font-size:1.75rem;color:#111;">Let's Talk</div></div>
+          <div class="price-desc">Every business is different. Get in touch and tell us what you're working with. We'll come back to you with a clear scope and a fair price. No obligation, no hard sell.</div>
           <ul class="price-features">
-            <li>Up to 10 pages</li><li>Everything in Business</li><li>Branding assets included</li><li>Advanced animations</li><li>Custom functionality</li><li>Priority build timeline</li>
+            <li>E-commerce and online stores</li>
+            <li>Booking and scheduling systems</li>
+            <li>Branding and digital assets</li>
+            <li>Ongoing SEO content strategy</li>
+            <li>Custom functionality and integrations</li>
           </ul>
-          <a href="contact.html" class="btn btn-outline" style="justify-content:center;text-align:center;">Get a Quote</a>
-        </div>
-        <div class="pricing-card fade-up stagger-3">
-          <div class="tier">Custom / E-commerce</div>
-          <div><div class="price">POA*</div></div>
-          <div class="price-desc">E-commerce, booking systems, custom integrations. Let's talk and we'll quote it properly.</div>
-          <ul class="price-features">
-            <li>E-commerce functionality</li><li>Booking &amp; scheduling systems</li><li>Custom integrations &amp; APIs</li><li>Quoted per project scope</li>
-          </ul>
-          <a href="contact.html" class="btn btn-outline" style="justify-content:center;text-align:center;">Let's Talk</a>
+          <a href="contact.html" class="btn btn-outline" style="justify-content:center;text-align:center;">Start a Conversation</a>
         </div>
       </div>
     </div>
@@ -156,7 +147,7 @@
             <div class="terms-item"><span>50% final balance due on completion, prior to domain handover</span></div>
             <div class="terms-item"><span>Monthly hosting billed on the 1st of each month</span></div>
             <div class="terms-item"><span>Hourly work invoiced fortnightly</span></div>
-            <div class="terms-item"><span>All prices in NZD. GST added once registered.</span></div>
+            <div class="terms-item"><span>All prices in NZD. GST excluded.</span></div>
           </div>
         </div>
         <div>
