@@ -2,12 +2,14 @@ const isHomepage = window.location.pathname === '/' ||
                    window.location.pathname.endsWith('index.html') ||
                    window.location.pathname === '';
 
-const navLogoSrc = isHomepage ? 'images/logo_black.png' : 'images/white_logo.png';
+// Homepage has dark/transparent nav → use white logo
+// Inner pages have white nav → use black logo
+const navLogoSrc = isHomepage ? 'images/white_logo.png' : 'images/logo_black.png';
 
 const NAV_HTML = `
 <nav class="nav" id="nav">
   <a href="index.html" class="nav-logo-img">
-    <img src="${navLogoSrc}" alt="Five&Co — Digital Design & Web Strategy" style="height:90px;width:auto;display:block;object-fit:contain;">
+    <img src="${navLogoSrc}" alt="Five&Co — Digital Design & Web Strategy">
   </a>
   <ul class="nav-links" id="navLinks">
     <li><a href="services.html">Services</a></li>
@@ -26,7 +28,7 @@ const FOOTER_HTML = `
 <footer style="background:#0A0A0A;border-top:1px solid rgba(212,175,55,0.2);padding:3rem 5%;">
   <div style="max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.5rem;">
     <div>
-      <img src="images/logo_black.png" alt="Five&Co" style="height:120px;width:auto;display:block;object-fit:contain;">
+      <img src="images/white_logo.png" alt="Five&Co" style="height:120px;width:auto;display:block;object-fit:contain;">
     </div>
     <ul style="display:flex;gap:2rem;list-style:none;flex-wrap:wrap;">
       <li><a href="services.html" style="font-size:0.75rem;color:rgba(255,255,255,0.45);text-decoration:none;letter-spacing:0.1em;text-transform:uppercase;font-weight:500;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">Services</a></li>
