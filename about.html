@@ -36,14 +36,14 @@
     .val-card:hover { box-shadow:0 10px 40px rgba(0,0,0,0.09); transform:translateY(-4px); }
     .val-icon { width:48px; height:48px; margin:0 auto 1.25rem; border:1px solid rgba(212,175,55,0.35); border-radius:50%; display:flex; align-items:center; justify-content:center; background:rgba(212,175,55,0.06); }
     .val-icon svg { width:20px; height:20px; stroke:var(--gold-dark); fill:none; stroke-width:1.5; }
-    .val-title { font-family:var(--font-display); font-size:1.125rem; color:#111; margin-bottom:0.5rem; font-weight:400; }
+    .val-title { font-family:var(--font-display); font-size:1.125rem; color:#111; margin-bottom:0.5rem; font-weight:700; }
     .val-desc { font-size:0.8125rem; color:#111; font-weight:400; line-height:1.75; }
 
     /* TECH CARDS */
     .tech-card { background:#fff; border:1px solid rgba(0,0,0,0.09); border-radius:4px; padding:1.75rem; transition:var(--transition); }
     .tech-card:hover { box-shadow:0 8px 30px rgba(0,0,0,0.08); transform:translateY(-3px); }
     .tech-cat { font-size:0.65rem; font-weight:600; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold-dark); margin-bottom:0.5rem; }
-    .tech-name { font-family:var(--font-display); font-size:1.25rem; color:#111; margin-bottom:0.5rem; }
+    .tech-name { font-family:var(--font-display); font-size:1.25rem; color:#111; margin-bottom:0.5rem; font-weight:700; }
     .tech-desc { font-size:0.8125rem; color:#111; font-weight:400; line-height:1.75; }
 
     /* FIXED VISUAL BOX — big enough for Five&Co */
@@ -61,7 +61,7 @@
     .about-brand-text {
       font-family: var(--font-display);
       font-size: clamp(3rem, 6vw, 5rem);
-      font-weight: 300;
+      font-weight: 400;
       background: var(--gold-text);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -104,12 +104,13 @@
             <li>Every client treated like our only client</li>
           </ul>
         </div>
-        <div class="fade-up stagger-2" style="display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:2rem 0;">
-          <img src="images/logo_light.png" alt="Five&Co — Digital Design & Web Strategy" style="height:220px;width:auto;display:block;object-fit:contain;margin-bottom:1.75rem;">
+        <div class="fade-up stagger-2" style="display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:3rem 2rem;">
+          <div style="font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(3rem,6vw,5rem);font-weight:400;background:linear-gradient(135deg,#B8860B 0%,#D4AF37 50%,#B8860B 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;margin-bottom:0.5rem;">Five&amp;Co</div>
+          <div style="font-size:0.6rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold-dark);margin-bottom:1.5rem;">Digital Design &amp; Web Strategy</div>
           <div style="display:flex;align-items:center;gap:0.875rem;">
-            <div style="height:1px;width:30px;background:var(--gold-gradient);"></div>
+            <div style="height:1px;width:40px;background:linear-gradient(90deg,#B8860B,#D4AF37);"></div>
             <span style="font-size:0.65rem;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold-dark);">Est. 2026 · Hamilton, New Zealand</span>
-            <div style="height:1px;width:30px;background:var(--gold-gradient);"></div>
+            <div style="height:1px;width:40px;background:linear-gradient(90deg,#D4AF37,#B8860B);"></div>
           </div>
         </div>
       </div>

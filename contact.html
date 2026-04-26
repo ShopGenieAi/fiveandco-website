@@ -33,7 +33,7 @@
     .form-row { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
     @media(max-width:600px){ .form-row{grid-template-columns:1fr;} }
     .form-group { display:flex; flex-direction:column; gap:0.4rem; }
-    .form-label { font-size:0.65rem; font-weight:600; letter-spacing:0.15em; text-transform:uppercase; color:#666; }
+    .form-label { font-size:0.65rem; font-weight:600; letter-spacing:0.15em; text-transform:uppercase; color: #222; }
 
     .form-input, .form-select, .form-textarea {
       background: #F8F6F1;
@@ -54,7 +54,7 @@
       background: #fff;
       box-shadow: 0 0 0 3px rgba(184,134,11,0.08);
     }
-    .form-input::placeholder { color: #999; }
+    .form-input::placeholder { color: #444; }
     .form-select {
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23B8860B' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
       background-repeat: no-repeat;
@@ -67,7 +67,7 @@
     .form-select option { background: #fff; color: #111; }
     .form-textarea { resize: vertical; min-height: 100px; }
 
-    .form-note { font-size:0.8rem; color:#555; font-weight:400; line-height:1.6; background:#F8F6F1; border-left:3px solid var(--gold-light); padding:1rem 1.25rem; border-radius:2px; }
+    .form-note { font-size:0.8rem; color: #111; font-weight:400; line-height:1.6; background:#F8F6F1; border-left:3px solid var(--gold-light); padding:1rem 1.25rem; border-radius:2px; }
 
     /* Success page */
     .success-screen { display:none; text-align:center; padding:3rem 2rem; }
@@ -184,7 +184,7 @@
                   <option value="Website Build — Business (up to 6 pages)">Website Build — Business (up to 6 pages)</option>
                   <option value="Website Build — Premium (up to 10 pages)">Website Build — Premium (up to 10 pages)</option>
                   <option value="Custom / E-commerce">Custom / E-commerce — Let's talk</option>
-                  <option value="Branding & Digital Assets">Branding &amp; Digital Assets</option>
+                  <option value="Branding & Digital Assets"></option>
                   <option value="Hosting & Maintenance only">Hosting &amp; Maintenance only</option>
                   <option value="Not sure yet">Not sure yet — help me figure it out</option>
                 </select>
@@ -223,7 +223,7 @@
                 Send My Details
               </button>
 
-              <p style="font-size:0.75rem;color:#888;font-weight:400;text-align:center;line-height:1.6;">
+              <p style="font-size:0.75rem;color: #333;font-weight:400;text-align:center;line-height:1.6;">
                 We'll be in touch within 24 hours. No spam, ever.
               </p>
             </form>

@@ -1,9 +1,3 @@
-const isHomepage = window.location.pathname === '/' || 
-                   window.location.pathname.endsWith('index.html') ||
-                   window.location.pathname === '';
-
-const navLogoSrc = isHomepage ? 'images/logo_dark.png' : 'images/logo_light.png';
-
 const NAV_HTML = `
 <nav class="nav" id="nav">
   <a href="index.html" class="nav-logo">Five&amp;Co</a>
@@ -23,14 +17,14 @@ const NAV_HTML = `
 const FOOTER_HTML = `
 <footer style="background:#0A0A0A;border-top:1px solid rgba(212,175,55,0.2);padding:3rem 5%;">
   <div style="max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.5rem;">
-    <img src="images/logo_dark.png" alt="Five&Co" style="height:50px;width:auto;display:block;object-fit:contain;">
+    <a href="index.html" style="font-family:'Cormorant Garamond',Georgia,serif;font-size:1.75rem;font-weight:400;background:linear-gradient(135deg,#B8860B 0%,#D4AF37 50%,#B8860B 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;text-decoration:none;">Five&amp;Co</a>
     <ul style="display:flex;gap:2rem;list-style:none;flex-wrap:wrap;">
       <li><a href="services.html" style="font-size:0.75rem;color:rgba(255,255,255,0.45);text-decoration:none;letter-spacing:0.1em;text-transform:uppercase;font-weight:500;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">Services</a></li>
       <li><a href="pricing.html" style="font-size:0.75rem;color:rgba(255,255,255,0.45);text-decoration:none;letter-spacing:0.1em;text-transform:uppercase;font-weight:500;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">Pricing</a></li>
       <li><a href="about.html" style="font-size:0.75rem;color:rgba(255,255,255,0.45);text-decoration:none;letter-spacing:0.1em;text-transform:uppercase;font-weight:500;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">About</a></li>
       <li><a href="contact.html" style="font-size:0.75rem;color:rgba(255,255,255,0.45);text-decoration:none;letter-spacing:0.1em;text-transform:uppercase;font-weight:500;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">Contact</a></li>
     </ul>
-    <div style="font-size:0.75rem;color:rgba(255,255,255,0.25);font-weight:300;">© 2026 Five&amp;Co · fiveandco.co.nz</div>
+    <div style="font-size:0.75rem;color:rgba(255,255,255,0.25);font-weight:400;">© 2026 Five&amp;Co · fiveandco.co.nz</div>
   </div>
 </footer>
 `;
