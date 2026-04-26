@@ -6,9 +6,7 @@ const navLogoSrc = isHomepage ? 'images/logo_dark.png' : 'images/logo_light.png'
 
 const NAV_HTML = `
 <nav class="nav" id="nav">
-  <a href="index.html" class="nav-logo-img">
-    <img src="${navLogoSrc}" alt="Five&Co">
-  </a>
+  <a href="index.html" class="nav-logo">Five&amp;Co</a>
   <ul class="nav-links" id="navLinks">
     <li><a href="services.html">Services</a></li>
     <li><a href="process.html">Process</a></li>

@@ -11,7 +11,7 @@
     .nav { background: #fff; border-bottom: 1px solid rgba(0,0,0,0.08); }
     .nav.scrolled { background: #fff; backdrop-filter: none; }
     .nav-logo { background: linear-gradient(135deg, #B8860B 0%, #D4AF37 50%, #B8860B 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-    .nav-links a { color: #333; }
+    .nav-links a { color: #111; }
     .nav-links a:hover { color: #111; }
     .nav-cta { color: var(--gold-dark) !important; border-color: rgba(184,134,11,0.5) !important; }
     .nav-toggle span { background: #111; }
@@ -25,10 +25,10 @@
     .sec-label { font-size:0.7rem; font-weight:600; letter-spacing:0.22em; text-transform:uppercase; color:var(--gold-dark); display:block; margin-bottom:1rem; }
 
     /* DARKER BODY TEXT */
-    .body-text { font-size:0.9375rem; color:#222; font-weight:300; line-height:1.85; margin-bottom:1.25rem; }
+    .body-text { font-size:0.9375rem; color:#222; font-weight:400; line-height:1.85; margin-bottom:1.25rem; }
 
     .list-items { list-style:none; display:flex; flex-direction:column; gap:0.875rem; }
-    .list-items li { display:flex; align-items:center; gap:1rem; font-size:0.9rem; color:#222; font-weight:300; line-height:1.5; }
+    .list-items li { display:flex; align-items:center; gap:1rem; font-size:0.9rem; color:#222; font-weight:400; line-height:1.5; }
     .list-items li::before { content:''; display:block; width:24px; height:1px; background:var(--gold-gradient); flex-shrink:0; }
 
     /* VALUE CARDS */
@@ -37,14 +37,14 @@
     .val-icon { width:48px; height:48px; margin:0 auto 1.25rem; border:1px solid rgba(212,175,55,0.35); border-radius:50%; display:flex; align-items:center; justify-content:center; background:rgba(212,175,55,0.06); }
     .val-icon svg { width:20px; height:20px; stroke:var(--gold-dark); fill:none; stroke-width:1.5; }
     .val-title { font-family:var(--font-display); font-size:1.125rem; color:#111; margin-bottom:0.5rem; font-weight:400; }
-    .val-desc { font-size:0.8125rem; color:#333; font-weight:300; line-height:1.75; }
+    .val-desc { font-size:0.8125rem; color:#111; font-weight:400; line-height:1.75; }
 
     /* TECH CARDS */
     .tech-card { background:#fff; border:1px solid rgba(0,0,0,0.09); border-radius:4px; padding:1.75rem; transition:var(--transition); }
     .tech-card:hover { box-shadow:0 8px 30px rgba(0,0,0,0.08); transform:translateY(-3px); }
     .tech-cat { font-size:0.65rem; font-weight:600; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold-dark); margin-bottom:0.5rem; }
     .tech-name { font-family:var(--font-display); font-size:1.25rem; color:#111; margin-bottom:0.5rem; }
-    .tech-desc { font-size:0.8125rem; color:#333; font-weight:300; line-height:1.75; }
+    .tech-desc { font-size:0.8125rem; color:#111; font-weight:400; line-height:1.75; }
 
     /* FIXED VISUAL BOX — big enough for Five&Co */
     .about-visual-box {
@@ -82,7 +82,7 @@
     <div style="position:absolute;inset:0;background:radial-gradient(ellipse 50% 80% at 80% 50%, rgba(212,175,55,0.08) 0%, transparent 70%);"></div>
     <div style="max-width:1200px;margin:0 auto;width:100%;position:relative;">
       <span class="sec-label fade-up" style="color:var(--gold-light);">The Story</span>
-      <h1 class="fade-up stagger-1" style="font-family:var(--font-display);font-size:clamp(2.5rem,6vw,5rem);font-weight:300;color:#fff;line-height:1;">About Five&amp;Co</h1>
+      <h1 class="fade-up stagger-1" style="font-family:var(--font-display);font-size:clamp(2.5rem,6vw,5rem);font-weight:400;color:#fff;line-height:1;">About Five&amp;Co</h1>
     </div>
   </div>
 
@@ -91,7 +91,7 @@
     <div class="inner">
       <div class="two-col">
         <div>
-          <h2 class="fade-up" style="font-family:var(--font-display);font-size:clamp(1.75rem,3vw,2.5rem);font-weight:300;color:#111;line-height:1.3;margin-bottom:1.75rem;">
+          <h2 class="fade-up" style="font-family:var(--font-display);font-size:clamp(1.75rem,3vw,2.5rem);font-weight:400;color:#111;line-height:1.3;margin-bottom:1.75rem;">
             Web design that works as hard<br>as the <em style="font-style:italic;color:var(--gold-dark);">people we build for.</em>
           </h2>
           <p class="body-text fade-up stagger-1">Five&Co is a web design studio based in Hamilton, New Zealand. We exist for one reason: small businesses deserve a great website without paying an agency fortune to get one.</p>
@@ -121,7 +121,7 @@
     <div class="inner">
       <div style="text-align:center;margin-bottom:4rem;">
         <span class="sec-label fade-up">What We Stand For</span>
-        <h2 class="fade-up stagger-1" style="font-family:var(--font-display);font-size:clamp(2rem,4vw,3rem);font-weight:300;color:#111;margin-top:0.5rem;">Our Values</h2>
+        <h2 class="fade-up stagger-1" style="font-family:var(--font-display);font-size:clamp(2rem,4vw,3rem);font-weight:400;color:#111;margin-top:0.5rem;">Our Values</h2>
       </div>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.5rem;">
         <div class="val-card fade-up">
@@ -158,8 +158,8 @@
     <div class="inner">
       <div style="margin-bottom:4rem;">
         <span class="sec-label fade-up">Under the Hood</span>
-        <h2 class="fade-up stagger-1" style="font-family:var(--font-display);font-size:clamp(2rem,4vw,3rem);font-weight:300;color:#111;line-height:1.1;margin-top:0.5rem;">The tech we use.<br><em style="font-style:italic;color:var(--gold-dark);">And why it matters.</em></h2>
-        <p class="fade-up stagger-2" style="font-size:0.9375rem;color:#333;font-weight:300;max-width:520px;margin-top:1rem;line-height:1.85;">Five&Co doesn't use bloated page builders. Every site is built from scratch using modern technology and deployed on world-class infrastructure trusted by some of the biggest brands on the planet.</p>
+        <h2 class="fade-up stagger-1" style="font-family:var(--font-display);font-size:clamp(2rem,4vw,3rem);font-weight:400;color:#111;line-height:1.1;margin-top:0.5rem;">The tech we use.<br><em style="font-style:italic;color:var(--gold-dark);">And why it matters.</em></h2>
+        <p class="fade-up stagger-2" style="font-size:0.9375rem;color:#111;font-weight:400;max-width:520px;margin-top:1rem;line-height:1.85;">Five&Co doesn't use bloated page builders. Every site is built from scratch using modern technology and deployed on world-class infrastructure trusted by some of the biggest brands on the planet.</p>
       </div>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.5rem;">
         <div class="tech-card fade-up"><div class="tech-cat">Custom Build</div><div class="tech-name">Built From Scratch</div><p class="tech-desc">Clean, lightweight and fully custom. Every site loads fast because there's nothing unnecessary weighing it down.</p></div>
@@ -174,8 +174,8 @@
 
   <section class="sd" style="text-align:center;">
     <div class="inner" style="max-width:600px;position:relative;z-index:1;">
-      <h2 class="fade-up" style="font-family:var(--font-display);font-size:clamp(1.75rem,4vw,3rem);font-weight:300;color:#fff;line-height:1.1;margin-bottom:1rem;">Sound like your kind of studio?</h2>
-      <p class="fade-up stagger-1" style="color:rgba(255,255,255,0.65);font-size:0.9375rem;font-weight:300;margin-bottom:2rem;line-height:1.8;">Get in touch. First conversation is always free.</p>
+      <h2 class="fade-up" style="font-family:var(--font-display);font-size:clamp(1.75rem,4vw,3rem);font-weight:400;color:#fff;line-height:1.1;margin-bottom:1rem;">Sound like your kind of studio?</h2>
+      <p class="fade-up stagger-1" style="color:rgba(255,255,255,0.65);font-size:0.9375rem;font-weight:400;margin-bottom:2rem;line-height:1.8;">Get in touch. First conversation is always free.</p>
       <div class="fade-up stagger-2" style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
         <a href="contact.html" class="btn btn-primary">Get in Touch</a>
         <a href="pricing.html" class="btn btn-ghost">View Pricing</a>
