@@ -15,8 +15,8 @@ const NAV_HTML = `
 `;
 
 const FOOTER_HTML = `
-<footer style="background:#0A0A0A;border-top:1px solid rgba(212,175,55,0.2);padding:3rem 5%;">
-  <div style="max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.5rem;">
+<footer style="background:#0A0A0A;border-top:1px solid rgba(212,175,55,0.2);padding:2.5rem 5%;">
+  <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.5rem;">
     <a href="index.html" style="font-family:'Cormorant Garamond',Georgia,serif;font-size:1.75rem;font-weight:400;background:linear-gradient(135deg,#B8860B 0%,#D4AF37 50%,#B8860B 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;text-decoration:none;">Five&amp;Co</a>
     <ul style="display:flex;gap:2rem;list-style:none;flex-wrap:wrap;">
       <li><a href="services.html" style="font-size:0.75rem;color:rgba(255,255,255,0.45);text-decoration:none;letter-spacing:0.1em;text-transform:uppercase;font-weight:500;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">Services</a></li>
