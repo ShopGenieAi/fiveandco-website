@@ -1,28 +1,4 @@
 {
-  "redirects": [
-    {
-      "source": "/:path*",
-      "has": [
-        {
-          "type": "host",
-          "value": "www.fiveandco.co.nz"
-        }
-      ],
-      "destination": "https://fiveandco.co.nz/:path*",
-      "permanent": true
-    },
-    {
-      "source": "/:path*",
-      "has": [
-        {
-          "type": "host",
-          "value": "fiveandco.vercel.app"
-        }
-      ],
-      "destination": "https://fiveandco.co.nz/:path*",
-      "permanent": true
-    }
-  ],
   "headers": [
     {
       "source": "/(.*).html",
