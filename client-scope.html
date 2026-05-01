@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Five&Co — Client Project Scope</title>
+  <meta name="description" content="Starting a new project with Five&Co? Fill in your project scope so we can get your website underway." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --gold-light: #F0D060;
+      --gold-mid: #D4AF37;
+      --gold-dark: #B8860B;
+      --black: #111111;
+      --black-soft: #1a1a1a;
+      --white: #ffffff;
+      --white-dim: rgba(255,255,255,0.55);
+      --white-faint: rgba(255,255,255,0.08);
+      --gold-glow: rgba(212,175,55,0.12);
+      --gold-border: rgba(212,175,55,0.22);
+    }
+
+    html, body {
+      height: 100%;
+      background: var(--black);
+      color: var(--white);
+      font-family: 'Lato', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* ── Background texture ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% -10%, rgba(212,175,55,0.10) 0%, transparent 65%),
+        radial-gradient(ellipse 50% 40% at 80% 100%, rgba(212,175,55,0.05) 0%, transparent 60%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Subtle grid lines */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(212,175,55,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(212,175,55,0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .page {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 3rem 1.5rem;
+    }
+
+    /* ── Logo area ── */
+    .logo-wrap {
+      text-align: center;
+      margin-bottom: 2.5rem;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 0.8s ease forwards;
+    }
+
+    .logo-mark {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(4rem, 12vw, 7rem);
+      font-weight: 600;
+      line-height: 1;
+      background: linear-gradient(160deg, var(--gold-light) 0%, var(--gold-mid) 40%, var(--gold-dark) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: -0.03em;
+      display: block;
+    }
+
+    .logo-rule {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      justify-content: center;
+      margin: 0.6rem 0 0.5rem;
+    }
+
+    .logo-rule-line {
+      height: 1px;
+      width: 55px;
+      background: linear-gradient(90deg, transparent, var(--gold-mid));
+    }
+
+    .logo-rule-line.r {
+      background: linear-gradient(90deg, var(--gold-mid), transparent);
+    }
+
+    .logo-rule-diamond {
+      width: 5px;
+      height: 5px;
+      background: var(--gold-mid);
+      transform: rotate(45deg);
+      flex-shrink: 0;
+    }
+
+    .logo-wordmark {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.2rem, 6vw, 3.2rem);
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      background: linear-gradient(135deg, var(--gold-light), var(--gold-mid), var(--gold-dark));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .logo-tagline {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.28em;
+      color: rgba(212,175,55,0.55);
+      text-transform: uppercase;
+      margin-top: 0.35rem;
+    }
+
+    /* ── Card ── */
+    .card {
+      background: rgba(20,18,14,0.85);
+      border: 1px solid var(--gold-border);
+      border-radius: 16px;
+      padding: clamp(2rem, 5vw, 3.5rem) clamp(1.5rem, 5vw, 3.5rem);
+      max-width: 620px;
+      width: 100%;
+      text-align: center;
+      backdrop-filter: blur(12px);
+      position: relative;
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(24px);
+      animation: fadeUp 0.8s ease 0.2s forwards;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(212,175,55,0.5), transparent);
+    }
+
+    .card-eyebrow {
+      font-size: 0.62rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(212,175,55,0.6);
+      margin-bottom: 1.1rem;
+    }
+
+    .card-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.7rem, 4.5vw, 2.4rem);
+      font-weight: 400;
+      color: var(--white);
+      line-height: 1.2;
+      margin-bottom: 1.1rem;
+    }
+
+    .card-heading em {
+      font-style: italic;
+      background: linear-gradient(135deg, var(--gold-light), var(--gold-mid));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .card-body {
+      font-size: 0.92rem;
+      color: var(--white-dim);
+      line-height: 1.75;
+      margin-bottom: 2rem;
+      max-width: 440px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* ── Steps ── */
+    .steps {
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+      margin-bottom: 2.2rem;
+      text-align: left;
+    }
+
+    .step {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.85rem;
+      padding: 0.75rem 1rem;
+      background: var(--white-faint);
+      border: 1px solid rgba(212,175,55,0.1);
+      border-radius: 10px;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .step:hover {
+      border-color: rgba(212,175,55,0.25);
+      background: rgba(212,175,55,0.05);
+    }
+
+    .step-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      background: linear-gradient(135deg, var(--gold-light), var(--gold-dark));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      flex-shrink: 0;
+      width: 22px;
+      line-height: 1.4;
+    }
+
+    .step-text {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.5;
+    }
+
+    .step-text strong {
+      color: rgba(255,255,255,0.9);
+      font-weight: 700;
+      display: block;
+      margin-bottom: 0.1rem;
+      font-size: 0.84rem;
+    }
+
+    /* ── CTA Button ── */
+    .cta-wrap {
+      margin-bottom: 1.5rem;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.65rem;
+      padding: 1rem 2.4rem;
+      background: linear-gradient(135deg, var(--gold-mid) 0%, var(--gold-dark) 100%);
+      color: var(--black);
+      font-family: 'Lato', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 50px;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
+      box-shadow: 0 4px 24px rgba(212,175,55,0.25), 0 0 0 0 rgba(212,175,55,0);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.18), transparent);
+      border-radius: inherit;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(212,175,55,0.38), 0 0 0 4px rgba(212,175,55,0.1);
+      filter: brightness(1.05);
+    }
+
+    .btn-primary:active {
+      transform: translateY(0);
+      box-shadow: 0 2px 12px rgba(212,175,55,0.2);
+    }
+
+    .btn-arrow {
+      display: inline-block;
+      font-size: 1rem;
+      transition: transform 0.18s ease;
+    }
+
+    .btn-primary:hover .btn-arrow {
+      transform: translateX(4px);
+    }
+
+    .btn-note {
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.3);
+      margin-top: 0.75rem;
+      letter-spacing: 0.04em;
+    }
+
+    /* ── Time estimate badge ── */
+    .time-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      background: rgba(212,175,55,0.08);
+      border: 1px solid rgba(212,175,55,0.18);
+      border-radius: 50px;
+      padding: 0.35rem 0.9rem;
+      font-size: 0.7rem;
+      color: rgba(212,175,55,0.75);
+      letter-spacing: 0.08em;
+      margin-bottom: 1.8rem;
+    }
+
+    .time-dot {
+      width: 5px;
+      height: 5px;
+      background: var(--gold-mid);
+      border-radius: 50%;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    /* ── Footer ── */
+    .footer {
+      margin-top: 2.5rem;
+      text-align: center;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.5s forwards;
+    }
+
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.95rem;
+      background: linear-gradient(135deg, var(--gold-mid), var(--gold-dark));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: 0.06em;
+      margin-bottom: 0.4rem;
+    }
+
+    .footer-links {
+      font-size: 0.7rem;
+      color: rgba(255,255,255,0.25);
+    }
+
+    .footer-links a {
+      color: rgba(212,175,55,0.45);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    .footer-links a:hover {
+      color: rgba(212,175,55,0.75);
+    }
+
+    .footer-powered {
+      font-size: 0.62rem;
+      color: rgba(255,255,255,0.12);
+      margin-top: 0.5rem;
+      letter-spacing: 0.05em;
+    }
+
+    /* ── Animations ── */
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.85); }
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 480px) {
+      .page { padding: 2rem 1rem; }
+      .steps { gap: 0.55rem; }
+      .step { padding: 0.65rem 0.85rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <!-- Logo -->
+    <div class="logo-wrap">
+      <div class="logo-rule">
+        <div class="logo-rule-line"></div>
+        <div class="logo-rule-diamond"></div>
+        <div class="logo-rule-line r"></div>
+      </div>
+      <div class="logo-wordmark">Five&amp;Co</div>
+      <div class="logo-tagline">Digital Design &amp; Web Strategy</div>
+    </div>
+
+    <!-- Card -->
+    <div class="card">
+      <div class="card-eyebrow">New Client Onboarding</div>
+      <h1 class="card-heading">Let's build something<br><em>worth talking about.</em></h1>
+      <p class="card-body">
+        Kia ora! Before we start building your website, we need to understand your business, your brand, and your goals. Fill in the project scope form below — the more detail you give us, the faster we can get started.
+      </p>
+
+      <div class="time-badge">
+        <div class="time-dot"></div>
+        Takes about 10–15 minutes to complete
+      </div>
+
+      <div class="steps">
+        <div class="step">
+          <span class="step-num">01</span>
+          <div class="step-text">
+            <strong>Your business &amp; brand</strong>
+            Tell us what you do, who you serve, and what makes you different.
+          </div>
+        </div>
+        <div class="step">
+          <span class="step-num">02</span>
+          <div class="step-text">
+            <strong>Design &amp; asset uploads</strong>
+            Share your logo, brand colours, photos, and any inspiration sites.
+          </div>
+        </div>
+        <div class="step">
+          <span class="step-num">03</span>
+          <div class="step-text">
+            <strong>Website scope &amp; content</strong>
+            Pages, features, copy — everything we need to start building.
+          </div>
+        </div>
+        <div class="step">
+          <span class="step-num">04</span>
+          <div class="step-text">
+            <strong>Domain, hosting &amp; timeline</strong>
+            Sort your domain situation and tell us when you want to launch.
+          </div>
+        </div>
+      </div>
+
+      <div class="cta-wrap">
+        <a class="btn-primary" href="https://form.jotform.com/261176675693066" target="_blank" rel="noopener">
+          Fill In My Project Scope
+          <span class="btn-arrow">→</span>
+        </a>
+        <div class="btn-note">Opens in a new tab &nbsp;·&nbsp; Your info is kept private</div>
+      </div>
+
+      <p style="font-size: 0.75rem; color: rgba(255,255,255,0.28); line-height: 1.6;">
+        Questions before you start? Email us at
+        <a href="mailto:hello@fiveandco.co.nz" style="color: rgba(212,175,55,0.55); text-decoration: none;">hello@fiveandco.co.nz</a>
+        — no stupid questions here.
+      </p>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <div class="footer-logo">Five&amp;Co</div>
+      <div class="footer-links">
+        <a href="https://fiveandco.co.nz">fiveandco.co.nz</a>
+        &nbsp;·&nbsp;
+        <a href="mailto:hello@fiveandco.co.nz">hello@fiveandco.co.nz</a>
+      </div>
+      <div class="footer-powered">Powered by Jotform &nbsp;·&nbsp; © 2026 Five&amp;Co</div>
+    </div>
+
+  </div>
+</body>
+</html>
