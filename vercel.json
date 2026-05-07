@@ -1,4 +1,17 @@
 {
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "fiveandco.co.nz"
+        }
+      ],
+      "destination": "https://www.fiveandco.co.nz/$1",
+      "permanent": true
+    }
+  ],
   "headers": [
     {
       "source": "/(.*).html",
