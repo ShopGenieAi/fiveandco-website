@@ -110,12 +110,7 @@
 
     .hero-stats { display: flex; gap: 4rem; padding-top: 3rem; border-top: 1px solid rgba(255,255,255,0.1); flex-wrap: wrap; }
     .stat-val { font-family: var(--font-display); font-size: 3rem; font-weight: 400; background: var(--gold-text); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1; margin-bottom: 0.3rem; }
-    .stat-label { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.4); }
-
-    .scroll-hint { position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 0.5rem; z-index: 2; }
-    .scroll-hint span { font-size: 0.625rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.25); }
-    .scroll-line { width: 1px; height: 50px; background: linear-gradient(to bottom, var(--gold-light), transparent); animation: scrollPulse 2s ease-in-out infinite; }
-    @keyframes scrollPulse { 0%,100%{opacity:0.3} 50%{opacity:1} }
+    .stat-label { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.72); }
 
     /* ─── MARQUEE ─── */
     .marquee {
@@ -147,6 +142,30 @@
     .s-b { background: #0D0D0D; color: var(--white); padding: 120px 6%; position: relative; overflow: hidden; }
     .s-b::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 80% at 50% 0%, rgba(212,175,55,0.05) 0%, transparent 70%); pointer-events: none; }
     .s-glow::after { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 55% 70% at 50% 50%, rgba(212,175,55,0.08) 0%, transparent 70%); pointer-events: none; }
+
+    /* Values section — lighter tone + gold grid + glow so it stands apart */
+    .s-values {
+      background: linear-gradient(180deg, #111111 0%, #1A1A1A 45%, #111111 100%);
+      color: var(--white);
+      padding: 120px 6%;
+      position: relative;
+      overflow: hidden;
+      border-top: 1px solid var(--gold-border);
+      border-bottom: 1px solid var(--gold-border);
+    }
+    .s-values::before {
+      content: ''; position: absolute; inset: 0;
+      background-image: linear-gradient(rgba(212,175,55,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(212,175,55,0.05) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 85% 95% at 50% 50%, black 0%, transparent 100%);
+      -webkit-mask-image: radial-gradient(ellipse 85% 95% at 50% 50%, black 0%, transparent 100%);
+      pointer-events: none;
+    }
+    .s-values::after {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse 70% 55% at 50% 62%, rgba(212,175,55,0.13) 0%, transparent 65%);
+      pointer-events: none;
+    }
 
     .inner { max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; }
 
@@ -251,12 +270,11 @@
       .hero-sub { font-size: 0.9375rem; }
       .hero-stats { gap: 1.5rem 2.5rem; padding-top: 2rem; }
       .stat-val { font-size: 2rem; }
-      .s-a, .s-b { padding: 80px 6%; }
+      .s-a, .s-b, .s-values { padding: 80px 6%; }
       .sec-num { top: 60px; }
       .intro-grid, .svc-grid, .val-grid { grid-template-columns: 1fr; gap: 1.25rem; }
       .intro-grid { gap: 2.5rem; }
       .marquee-group span { font-size: 1.125rem; padding: 0 1rem; }
-      .scroll-hint { display: none; }
     }
     @media (max-width: 400px) {
       .hero-brand { font-size: clamp(3rem, 18vw, 4.5rem); }
@@ -265,7 +283,6 @@
 
     @media (prefers-reduced-motion: reduce) {
       .marquee-track { animation: none; }
-      .scroll-line { animation: none; }
     }
   </style>
 </head>
@@ -304,10 +321,6 @@
         <div><div class="stat-val" data-count="100" data-suffix="%">100%</div><div class="stat-label">Custom Code</div></div>
         <div><div class="stat-val">NZ</div><div class="stat-label">Proudly Based</div></div>
       </div>
-    </div>
-    <div class="scroll-hint" data-hero="hint">
-      <span>Scroll</span>
-      <div class="scroll-line"></div>
     </div>
   </section>
 
@@ -394,7 +407,7 @@
   </section>
 
   <!-- VALUES -->
-  <section class="s-b">
+  <section class="s-values">
     <div class="sec-num" aria-hidden="true">04</div>
     <div class="inner">
       <div style="text-align:center;margin-bottom:4rem;" data-reveal>
@@ -503,9 +516,8 @@
         'varying vec3 vColor;',
         'void main() {',
         '  float d = length(gl_PointCoord - vec2(0.5));',
-        '  float a = smoothstep(0.5, 0.0, d);',
-        '  a *= a;',
-        '  gl_FragColor = vec4(vColor, a * 0.9);',
+        '  float a = smoothstep(0.5, 0.08, d);',
+        '  gl_FragColor = vec4(vColor, a);',
         '}'
       ].join('\n')
     });
@@ -558,12 +570,12 @@
         home[i * 3] = x; home[i * 3 + 1] = y; home[i * 3 + 2] = z;
         positions[i * 3] = x; positions[i * 3 + 1] = y; positions[i * 3 + 2] = z;
 
-        if (Math.random() < 0.08) {
+        if (Math.random() < 0.15) {
           tmp.copy(GOLD_SPARK);
-          sizes[i] = 3 + Math.random() * 2;
+          sizes[i] = 4.5 + Math.random() * 2.5;
         } else {
-          tmp.copy(GOLD_LIGHT).lerp(GOLD_DARK, Math.random());
-          sizes[i] = 1 + Math.random() * 2;
+          tmp.copy(GOLD_LIGHT).lerp(GOLD_DARK, Math.random() * 0.7).lerp(GOLD_SPARK, 0.25 + Math.random() * 0.35);
+          sizes[i] = 2 + Math.random() * 2.5;
         }
         colors[i * 3] = tmp.r; colors[i * 3 + 1] = tmp.g; colors[i * 3 + 2] = tmp.b;
 
@@ -728,8 +740,7 @@
     tl.from('[data-hero="tagline"]', { opacity: 0, y: 40, duration: 1 }, 0.9)
       .from('[data-hero="sub"]', { opacity: 0, y: 30, duration: 0.9 }, 1.1)
       .from('[data-hero="actions"] .btn', { opacity: 0, y: 25, duration: 0.7, stagger: 0.12 }, 1.25)
-      .from('[data-hero="stats"] > div', { opacity: 0, y: 25, duration: 0.7, stagger: 0.1 }, 1.4)
-      .from('[data-hero="hint"]', { opacity: 0, duration: 1 }, 1.8);
+      .from('[data-hero="stats"] > div', { opacity: 0, y: 25, duration: 0.7, stagger: 0.1 }, 1.4);
 
     if (typeof ScrollTrigger === 'undefined') return;
 
