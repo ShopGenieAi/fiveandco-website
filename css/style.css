@@ -16,6 +16,14 @@
   --gold-faint: rgba(212,175,55,0.12);
   --gold-border: rgba(212,175,55,0.3);
   --gold-border-strong: rgba(212,175,55,0.6);
+  --cream: #F5F0E8;
+  --cream-deep: #EDE8DC;
+  --cream-card: #EFEBE0;
+  --ink: #0D0C0A;
+  --ink-soft: #2A2825;
+  --ink-muted: rgba(13,12,10,0.55);
+  --ink-faint: rgba(13,12,10,0.1);
+  --gold-on-light: #8B6914;
   --font-display: 'Cormorant Garamond', Georgia, serif;
   --font-body: 'Montserrat', sans-serif;
   --nav-height: 100px;
