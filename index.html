@@ -28,9 +28,11 @@
       width: 200%; height: 200%;
       pointer-events: none;
       z-index: 9000;
-      opacity: 0.04;
+      opacity: 0.055;
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      animation: grainShift 8s steps(10) infinite;
     }
+    @keyframes grainShift { to { background-position: 200px 200px; } }
 
     /* ─── HERO ─── */
     .hero {
@@ -57,6 +59,14 @@
       -webkit-mask-image: radial-gradient(ellipse 100% 100% at 50% 50%, black 0%, transparent 100%);
       pointer-events: none;
     }
+    .hero-contour {
+      position: absolute; left: 0; right: 0; top: -5%; height: 110%; z-index: 0;
+      pointer-events: none;
+      mask-image: radial-gradient(ellipse 75% 75% at 50% 50%, black 35%, transparent 95%);
+      -webkit-mask-image: radial-gradient(ellipse 75% 75% at 50% 50%, black 35%, transparent 95%);
+    }
+    .hero-contour svg { width: 100%; height: 100%; display: block; animation: contourDrift 20s ease-in-out infinite; }
+    @keyframes contourDrift { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-30px); } }
     #gold-canvas {
       position: absolute; inset: 0; z-index: 1;
       width: 100%; height: 100%;
@@ -116,8 +126,8 @@
     .marquee {
       overflow: hidden;
       padding: 1.75rem 0;
-      border-top: 1px solid var(--gold-border);
-      border-bottom: 1px solid var(--gold-border);
+      border-top: 1px solid rgba(212,175,55,0.2);
+      border-bottom: 1px solid rgba(212,175,55,0.2);
       background: var(--black);
       position: relative;
     }
@@ -137,33 +147,32 @@
     }
     @keyframes marqueeScroll { to { transform: translateX(-50%); } }
 
-    /* ─── DARK SECTIONS ─── */
+    /* ─── DARK SECTIONS ───
+       Tonal depth across the page: hero/CTA #0A0A0A, services #131210
+       (warm), values #0D0D0B (warm near-black). */
     .s-a { background: var(--black); color: var(--white); padding: 120px 6%; position: relative; overflow: hidden; }
-    .s-b { background: #0D0D0D; color: var(--white); padding: 120px 6%; position: relative; overflow: hidden; }
+    .s-b { background: #131210; color: var(--white); padding: 120px 6%; position: relative; overflow: hidden; }
     .s-b::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 80% at 50% 0%, rgba(212,175,55,0.05) 0%, transparent 70%); pointer-events: none; }
     .s-glow::after { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 55% 70% at 50% 50%, rgba(212,175,55,0.08) 0%, transparent 70%); pointer-events: none; }
 
-    /* Values section — lighter tone + gold grid + glow so it stands apart */
+    /* Gold gradient separator between major sections */
+    .sec-sep { height: 1px; background: linear-gradient(90deg, transparent, rgba(212,175,55,0.3), transparent); }
+
+    /* Values section — warm near-black, top separator, faint glow */
     .s-values {
-      background: linear-gradient(180deg, #111111 0%, #1A1A1A 45%, #111111 100%);
+      background: #0D0D0B;
       color: var(--white);
       padding: 120px 6%;
       position: relative;
       overflow: hidden;
-      border-top: 1px solid var(--gold-border);
-      border-bottom: 1px solid var(--gold-border);
     }
     .s-values::before {
-      content: ''; position: absolute; inset: 0;
-      background-image: linear-gradient(rgba(212,175,55,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(212,175,55,0.05) 1px, transparent 1px);
-      background-size: 60px 60px;
-      mask-image: radial-gradient(ellipse 85% 95% at 50% 50%, black 0%, transparent 100%);
-      -webkit-mask-image: radial-gradient(ellipse 85% 95% at 50% 50%, black 0%, transparent 100%);
-      pointer-events: none;
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(212,175,55,0.3), transparent);
     }
     .s-values::after {
       content: ''; position: absolute; inset: 0;
-      background: radial-gradient(ellipse 70% 55% at 50% 62%, rgba(212,175,55,0.13) 0%, transparent 65%);
+      background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(212,175,55,0.04) 0%, transparent 70%);
       pointer-events: none;
     }
 
@@ -200,7 +209,7 @@
     /* ─── SERVICE CARDS ─── */
     .svc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
     .svc-card {
-      background: var(--black-card);
+      background: #111111;
       border: 1px solid var(--gold-border);
       border-radius: 4px;
       padding: 2.75rem 2.25rem;
@@ -210,20 +219,23 @@
     }
     .svc-card::before {
       content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
-      background: var(--gold-gradient);
-      transform: scaleX(0); transform-origin: left;
-      transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      background: linear-gradient(90deg, #D4AF37 0%, #F5D97A 50%, #B8860B 100%);
     }
     .svc-card::after {
       content: ''; position: absolute; inset: 0;
       background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(212,175,55,0.07) 0%, transparent 70%);
       opacity: 0; transition: opacity 0.5s ease; pointer-events: none;
     }
-    .svc-card:hover { transform: translateY(-8px); border-color: var(--gold-border-strong); box-shadow: 0 30px 60px rgba(0,0,0,0.5); }
-    .svc-card:hover::before { transform: scaleX(1); }
+    .svc-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--gold-border-strong);
+      background: #131210;
+      box-shadow: inset 0 0 40px rgba(212,175,55,0.05), 0 30px 60px rgba(0,0,0,0.5);
+    }
     .svc-card:hover::after { opacity: 1; }
     .svc-num { font-family: var(--font-display); font-size: 0.875rem; letter-spacing: 0.15em; color: var(--gold-light); opacity: 0.6; margin-bottom: 1.5rem; }
     .svc-title { font-family: var(--font-display); font-size: 1.625rem; color: var(--white); margin-bottom: 0.75rem; }
+    .svc-title::after { content: ''; display: block; height: 1px; background: rgba(212,175,55,0.2); margin-top: 0.85rem; }
     .svc-desc { font-size: 0.875rem; color: rgba(255,255,255,0.6); font-weight: 400; line-height: 1.75; margin-bottom: 1.5rem; }
     .svc-price { font-family: var(--font-display); font-size: 1.25rem; background: var(--gold-text); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
 
@@ -253,9 +265,17 @@
     .val-card:hover .val-icon { border-color: var(--gold-light); box-shadow: 0 0 25px rgba(212,175,55,0.25); }
     .val-icon svg { stroke: var(--gold-light); fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; display: block; }
     .val-title { font-family: var(--font-display); font-size: 1.2rem; color: var(--white); margin-bottom: 0.5rem; }
+    .val-title::before { content: '◆'; color: #D4AF37; font-size: 0.5rem; display: inline-block; margin-right: 0.5rem; vertical-align: 3px; }
     .val-desc { font-size: 0.8125rem; color: rgba(255,255,255,0.55); font-weight: 400; line-height: 1.7; }
 
-    /* ─── CTA ─── */
+    /* ─── CTA — spotlight treatment ─── */
+    .s-cta::after {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse 60% 80% at 50% 50%, rgba(212,175,55,0.12) 0%, rgba(212,175,55,0.04) 40%, transparent 70%);
+      pointer-events: none;
+    }
+    .s-cta .sec-heading::before { content: ''; display: block; width: 60px; height: 1px; background: var(--gold-gradient); margin: 0 auto 1.5rem; }
+    .s-cta .btn-primary:hover { box-shadow: 0 0 30px rgba(212,175,55,0.25), 0 0 60px rgba(212,175,55,0.1); }
     .cta-sub { color: rgba(255,255,255,0.55); font-size: 1rem; font-weight: 400; max-width: 480px; margin: 0 auto 2.5rem; line-height: 1.8; }
 
     /* ─── RESPONSIVE ─── */
@@ -283,6 +303,8 @@
 
     @media (prefers-reduced-motion: reduce) {
       .marquee-track { animation: none; }
+      .hero-contour svg { animation: none; }
+      .grain { animation: none; }
     }
   </style>
 </head>
@@ -294,6 +316,17 @@
   <section class="hero" id="hero">
     <div class="hero-bg"></div>
     <div class="hero-grid"></div>
+    <div class="hero-contour" aria-hidden="true">
+      <svg viewBox="0 0 1440 980" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,150 C180,110 360,200 540,170 C720,140 900,60 1080,90 C1260,120 1380,180 1440,160" stroke="rgba(212,175,55,0.12)" stroke-width="0.6"/>
+        <path d="M0,260 C200,230 380,320 580,290 C780,260 940,180 1140,210 C1300,235 1390,290 1440,270" stroke="rgba(212,175,55,0.12)" stroke-width="1"/>
+        <path d="M0,380 C160,350 340,430 520,410 C700,390 880,310 1060,340 C1240,370 1360,420 1440,400" stroke="rgba(212,175,55,0.12)" stroke-width="0.5"/>
+        <path d="M0,500 C220,460 400,560 600,530 C800,500 980,420 1160,450 C1320,475 1400,520 1440,510" stroke="rgba(212,175,55,0.12)" stroke-width="1.25"/>
+        <path d="M0,620 C180,590 360,670 540,650 C720,630 900,560 1080,590 C1260,620 1380,660 1440,640" stroke="rgba(212,175,55,0.12)" stroke-width="0.75"/>
+        <path d="M0,740 C200,700 380,790 580,760 C780,730 960,660 1140,690 C1300,715 1390,760 1440,745" stroke="rgba(212,175,55,0.12)" stroke-width="1.5"/>
+        <path d="M0,860 C160,830 340,900 520,880 C700,860 880,800 1060,825 C1240,850 1360,890 1440,875" stroke="rgba(212,175,55,0.12)" stroke-width="0.6"/>
+      </svg>
+    </div>
     <canvas id="gold-canvas" aria-hidden="true"></canvas>
     <div class="hero-inner">
       <div class="hero-eyebrow" data-hero="eyebrow">
@@ -357,6 +390,8 @@
     </div>
   </section>
 
+  <div class="sec-sep" aria-hidden="true"></div>
+
   <!-- SERVICES -->
   <section class="s-b">
     <div class="sec-num" aria-hidden="true">02</div>
@@ -390,6 +425,8 @@
       </div>
     </div>
   </section>
+
+  <div class="sec-sep" aria-hidden="true"></div>
 
   <!-- MISSION -->
   <section class="s-a s-glow">
@@ -444,8 +481,10 @@
     </div>
   </section>
 
+  <div class="sec-sep" aria-hidden="true"></div>
+
   <!-- CTA -->
-  <section class="s-a s-glow" style="text-align:center;">
+  <section class="s-a s-cta" style="text-align:center;">
     <div class="inner" style="max-width:700px;">
       <span class="sec-label centered" data-reveal>Ready when you are</span>
       <h2 class="sec-heading" data-reveal style="margin:0.75rem 0 1.5rem;">Let's build something<br><em>worth talking about.</em></h2>
