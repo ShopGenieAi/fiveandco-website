@@ -57,35 +57,6 @@
       content: ''; position: absolute; bottom: 0; left: 0; right: 0;
       height: 3px; background: var(--gold-gradient); z-index: 3;
     }
-    .hero-bg {
-      position: absolute; inset: 0; z-index: 0;
-      background:
-        radial-gradient(ellipse 70% 60% at 80% 40%, rgba(212,175,55,0.07) 0%, transparent 65%),
-        radial-gradient(ellipse 50% 70% at 10% 90%, rgba(184,134,11,0.05) 0%, transparent 60%);
-      pointer-events: none;
-    }
-    .hero-grid {
-      position: absolute; inset: 0; z-index: 0;
-      background-image: linear-gradient(rgba(212,175,55,0.035) 1px, transparent 1px), linear-gradient(90deg, rgba(212,175,55,0.035) 1px, transparent 1px);
-      background-size: 70px 70px;
-      mask-image: radial-gradient(ellipse 100% 100% at 50% 50%, black 0%, transparent 100%);
-      -webkit-mask-image: radial-gradient(ellipse 100% 100% at 50% 50%, black 0%, transparent 100%);
-      pointer-events: none;
-    }
-    .hero-contour {
-      position: absolute; left: 0; right: 0; top: -5%; height: 110%; z-index: 0;
-      pointer-events: none;
-      mask-image: radial-gradient(ellipse 75% 75% at 50% 50%, black 35%, transparent 95%);
-      -webkit-mask-image: radial-gradient(ellipse 75% 75% at 50% 50%, black 35%, transparent 95%);
-    }
-    .hero-contour svg { width: 100%; height: 100%; display: block; animation: contourDrift 20s ease-in-out infinite; }
-    @keyframes contourDrift { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-30px); } }
-    #gold-canvas {
-      position: absolute; inset: 0; z-index: 1;
-      width: 100%; height: 100%;
-      pointer-events: none;
-      display: block;
-    }
     .hero-inner { max-width: 1300px; margin: 0 auto; width: 100%; position: relative; z-index: 2; }
 
     .hero-eyebrow { display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem; }
@@ -105,6 +76,9 @@
       background-clip: text;
       margin-bottom: 0.2em;
       user-select: none;
+      /* Rendered by the liquid gold WebGL canvas on desktop; the liquid
+         script restores opacity on mobile/reduced-motion/WebGL failure. */
+      opacity: 0;
     }
     .hero-brand .char-mask { display: inline-block; overflow: hidden; vertical-align: bottom; }
     .hero-brand .char {
@@ -274,14 +248,33 @@
       border-radius: 4px;
       padding: 2.25rem 1.75rem;
       text-align: center;
-      transition: var(--transition);
+      /* transform deliberately not transitioned — the 3D tilt JS drives it
+         directly and must track the mouse without lag */
+      transition: border-color 0.35s ease, box-shadow 0.35s ease;
     }
-    .val-card:hover { transform: translateY(-5px); border-color: rgba(139,105,20,0.35); box-shadow: 0 8px 40px rgba(13,12,10,0.08); }
-    .val-icon { width: 50px; height: 50px; margin: 0 auto 1.5rem; border: 1px solid rgba(139,105,20,0.35); border-radius: 50%; display: flex; align-items: center; justify-content: center; background: rgba(139,105,20,0.06); transition: var(--transition); }
-    .val-card:hover .val-icon { border-color: var(--gold-on-light); box-shadow: 0 0 25px rgba(139,105,20,0.2); }
-    .val-icon svg { stroke: var(--gold-on-light); fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; display: block; }
+    .val-card:hover { border-color: rgba(139,105,20,0.35); box-shadow: 0 8px 40px rgba(13,12,10,0.08); }
+    .val-icon-wrap {
+      width: 56px; height: 56px;
+      margin: 0 auto 1.75rem;
+      display: flex; align-items: center; justify-content: center;
+      position: relative;
+      transition: transform 0.3s ease;
+    }
+    .val-icon-wrap::after {
+      content: '';
+      position: absolute; inset: -8px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(139,105,20,0.0) 0%, transparent 70%);
+      transition: background 0.4s ease;
+    }
+    .val-card:hover .val-icon-wrap::after {
+      background: radial-gradient(circle, rgba(139,105,20,0.12) 0%, transparent 70%);
+    }
+    .val-card:hover .val-icon-wrap { transform: scale(1.1); }
+    .val-icon-wrap svg { width: 36px; height: 36px; display: block; transition: stroke 0.3s ease; }
+    .val-card:hover .val-icon-wrap svg path,
+    .val-card:hover .val-icon-wrap svg circle { stroke: #6B4F0A; }
     .val-title { font-family: var(--font-display); font-size: 1.2rem; color: var(--ink); margin-bottom: 0.5rem; }
-    .val-title::before { content: '◆'; color: var(--gold-on-light); font-size: 0.5rem; display: inline-block; margin-right: 0.5rem; vertical-align: 3px; }
     .val-desc { font-size: 0.8125rem; color: var(--ink-muted); font-weight: 400; line-height: 1.7; }
 
     /* ─── CTA — dark bookend with spotlight ─── */
@@ -371,7 +364,6 @@
 
     @media (prefers-reduced-motion: reduce) {
       .marquee-track { animation: none; }
-      .hero-contour svg { animation: none; }
       .grain { animation: none; }
     }
   </style>
@@ -384,20 +376,7 @@
 
   <!-- HERO -->
   <section class="hero" id="hero">
-    <div class="hero-bg"></div>
-    <div class="hero-grid"></div>
-    <div class="hero-contour" aria-hidden="true">
-      <svg viewBox="0 0 1440 980" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M0,150 C180,110 360,200 540,170 C720,140 900,60 1080,90 C1260,120 1380,180 1440,160" stroke="rgba(212,175,55,0.12)" stroke-width="0.6"/>
-        <path d="M0,260 C200,230 380,320 580,290 C780,260 940,180 1140,210 C1300,235 1390,290 1440,270" stroke="rgba(212,175,55,0.12)" stroke-width="1"/>
-        <path d="M0,380 C160,350 340,430 520,410 C700,390 880,310 1060,340 C1240,370 1360,420 1440,400" stroke="rgba(212,175,55,0.12)" stroke-width="0.5"/>
-        <path d="M0,500 C220,460 400,560 600,530 C800,500 980,420 1160,450 C1320,475 1400,520 1440,510" stroke="rgba(212,175,55,0.12)" stroke-width="1.25"/>
-        <path d="M0,620 C180,590 360,670 540,650 C720,630 900,560 1080,590 C1260,620 1380,660 1440,640" stroke="rgba(212,175,55,0.12)" stroke-width="0.75"/>
-        <path d="M0,740 C200,700 380,790 580,760 C780,730 960,660 1140,690 C1300,715 1390,760 1440,745" stroke="rgba(212,175,55,0.12)" stroke-width="1.5"/>
-        <path d="M0,860 C160,830 340,900 520,880 C700,860 880,800 1060,825 C1240,850 1360,890 1440,875" stroke="rgba(212,175,55,0.12)" stroke-width="0.6"/>
-      </svg>
-    </div>
-    <canvas id="gold-canvas" aria-hidden="true"></canvas>
+    <canvas id="liquid-canvas" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none;display:block;"></canvas>
     <div class="hero-inner">
       <div class="hero-eyebrow" data-hero="eyebrow">
         <span>New Zealand · Digital Design & Web Strategy</span>
@@ -521,31 +500,56 @@
         <span class="sec-label centered">What We Stand For</span>
         <h2 class="sec-heading" style="margin-top:0.5rem;">Our <em>Values</em></h2>
       </div>
-      <div class="val-grid" data-reveal-group>
-        <div class="val-card">
-          <div class="val-icon"><svg width="22" height="22" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg></div>
-          <div class="val-title">Speed First</div>
-          <div class="val-desc">90+ PageSpeed scores aren't a bonus. They're the floor.</div>
+      <div class="val-grid" id="valGrid" data-reveal-group>
+        <div class="val-card" data-tilt>
+          <div class="val-icon-wrap">
+            <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M20 4L8 20h10l-2 12 12-16H18L20 4z" stroke="#8B6914" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3 class="val-title">Speed First</h3>
+          <p class="val-desc">90+ PageSpeed scores aren't a bonus. They're the floor.</p>
         </div>
-        <div class="val-card">
-          <div class="val-icon"><svg width="22" height="22" viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><circle cx="7" cy="7" r="1.5" fill="#D4AF37" stroke="none"/></svg></div>
-          <div class="val-title">Honest Pricing</div>
-          <div class="val-desc">No hidden fees. No fluff. The price quoted is the price you pay.</div>
+        <div class="val-card" data-tilt>
+          <div class="val-icon-wrap">
+            <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="18" cy="18" r="12" stroke="#8B6914" stroke-width="1.8"/>
+              <path d="M13 18l4 4 6-8" stroke="#8B6914" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3 class="val-title">Honest Pricing</h3>
+          <p class="val-desc">No hidden fees. No fluff. The price quoted is the price you pay.</p>
         </div>
-        <div class="val-card">
-          <div class="val-icon"><svg width="22" height="22" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
-          <div class="val-title">Real Relationships</div>
-          <div class="val-desc">We treat every client like our only client. Always responsive, always invested.</div>
+        <div class="val-card" data-tilt>
+          <div class="val-icon-wrap">
+            <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 14c0-3.314 2.686-6 6-6s6 2.686 6 6-2.686 6-6 6-6-2.686-6-6z" stroke="#8B6914" stroke-width="1.8"/>
+              <path d="M6 30c0-5.523 5.373-10 12-10s12 4.477 12 10" stroke="#8B6914" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3 class="val-title">Real Relationships</h3>
+          <p class="val-desc">We treat every client like our only client. Always responsive, always invested.</p>
         </div>
-        <div class="val-card">
-          <div class="val-icon"><svg width="22" height="22" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
-          <div class="val-title">Kiwi Roots</div>
-          <div class="val-desc">Proudly NZ-based. Internationally competitive. Built for businesses like yours.</div>
+        <div class="val-card" data-tilt>
+          <div class="val-icon-wrap">
+            <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="18" cy="18" r="12" stroke="#8B6914" stroke-width="1.8"/>
+              <path d="M6.5 18h23M18 6.5c-3 3-5 7-5 11.5s2 8.5 5 11.5M18 6.5c3 3 5 7 5 11.5s-2 8.5-5 11.5" stroke="#8B6914" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3 class="val-title">Kiwi Roots</h3>
+          <p class="val-desc">Proudly NZ-based. Internationally competitive. Built for businesses like yours.</p>
         </div>
-        <div class="val-card">
-          <div class="val-icon"><svg width="22" height="22" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
-          <div class="val-title">Future Thinking</div>
-          <div class="val-desc">We build on modern tech that won't date in 12 months. Always forward.</div>
+        <div class="val-card" data-tilt>
+          <div class="val-icon-wrap">
+            <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M18 6v4M18 26v4M6 18h4M26 18h4" stroke="#8B6914" stroke-width="1.8" stroke-linecap="round"/>
+              <circle cx="18" cy="18" r="7" stroke="#8B6914" stroke-width="1.8"/>
+              <circle cx="18" cy="18" r="2.5" fill="#8B6914"/>
+            </svg>
+          </div>
+          <h3 class="val-title">Future Thinking</h3>
+          <p class="val-desc">We build on modern tech that won't date in 12 months. Always forward.</p>
         </div>
       </div>
     </div>
@@ -572,243 +576,209 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script>
   /* ═══════════════════════════════════════════════════════════
-     THREE.JS — "Gold Dust" particle field
-     Drifting gold particles behind the hero. Camera tilts toward
-     the cursor; particles within range are pushed away and spring
-     back. 600 particles under 768px, 2000 on desktop. Render loop
-     pauses when the hero is off-screen or the tab is hidden.
+     THREE.JS — LIQUID GOLD HERO
+     "Five&Co" rendered to an offscreen 2D canvas, displaced by
+     simplex-noise flow + mouse influence in a fragment shader, and
+     shaded with shifting molten-gold tones. Mobile, reduced-motion
+     and WebGL-failure paths restore the hidden .hero-brand text.
      ═══════════════════════════════════════════════════════════ */
   (function () {
-    var canvas = document.getElementById('gold-canvas');
-    if (!canvas || typeof THREE === 'undefined') return;
+    var brandEl = document.getElementById('heroBrand');
+    function showBrand() { if (brandEl) brandEl.style.opacity = '1'; }
 
+    var isMobile = window.innerWidth < 768;
     var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var isTouch = window.matchMedia('(pointer: coarse)').matches;
-
-    var renderer;
-    try {
-      renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: false, powerPreference: 'high-performance' });
-    } catch (e) {
-      canvas.style.display = 'none';
+    if (isMobile || reduced) {
+      showBrand();
       return;
     }
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, isTouch ? 1.5 : 2));
 
-    var scene = new THREE.Scene();
-    var camera = new THREE.PerspectiveCamera(60, 1, 0.1, 200);
-    camera.position.set(0, 0, 50);
-
-    var GOLD_LIGHT = new THREE.Color('#D4AF37');
-    var GOLD_DARK = new THREE.Color('#B8860B');
-    var GOLD_SPARK = new THREE.Color('#F5D97A');
-
-    var material = new THREE.ShaderMaterial({
-      transparent: true,
-      depthWrite: false,
-      blending: THREE.AdditiveBlending,
-      uniforms: { uPR: { value: renderer.getPixelRatio() } },
-      vertexShader: [
-        'attribute float aSize;',
-        'attribute vec3 aColor;',
-        'uniform float uPR;',
-        'varying vec3 vColor;',
-        'void main() {',
-        '  vColor = aColor;',
-        '  vec4 mv = modelViewMatrix * vec4(position, 1.0);',
-        '  gl_PointSize = aSize * uPR * (60.0 / -mv.z);',
-        '  gl_Position = projectionMatrix * mv;',
-        '}'
-      ].join('\n'),
-      fragmentShader: [
-        'varying vec3 vColor;',
-        'void main() {',
-        '  float d = length(gl_PointCoord - vec2(0.5));',
-        '  float a = smoothstep(0.5, 0.08, d);',
-        '  gl_FragColor = vec4(vColor, a);',
-        '}'
-      ].join('\n')
-    });
-
-    var points = null, geometry = null;
-    var count = 0, home, offsets, phases, speeds, amps;
-
-    function particleCount() { return window.innerWidth < 768 ? 600 : 2000; }
-
-    function sizeRenderer() {
-      var w = canvas.clientWidth || window.innerWidth;
-      var h = canvas.clientHeight || window.innerHeight;
-      renderer.setSize(w, h, false);
-      camera.aspect = w / h;
-      camera.updateProjectionMatrix();
-      return { w: w, h: h };
+    var canvas = document.getElementById('liquid-canvas');
+    if (!canvas || typeof THREE === 'undefined') {
+      showBrand();
+      return;
     }
 
-    function buildField() {
-      if (points) {
-        scene.remove(points);
-        geometry.dispose();
-      }
-      var dims = sizeRenderer();
-      count = particleCount();
+    try {
+      var W = canvas.offsetWidth || window.innerWidth;
+      var H = canvas.offsetHeight || window.innerHeight;
+      var dpr = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = W * dpr;
+      canvas.height = H * dpr;
 
-      // Visible frustum at z=0 with camera at z=50, FOV 60
-      var visH = 2 * Math.tan(Math.PI / 6) * 50;
-      var visW = visH * (dims.w / dims.h);
+      // Offscreen 2D canvas — render "Five&Co" as texture
+      var off = document.createElement('canvas');
+      off.width = canvas.width;
+      off.height = canvas.height;
+      var ctx2d = off.getContext('2d');
 
-      home = new Float32Array(count * 3);
-      offsets = new Float32Array(count * 2);
-      phases = new Float32Array(count);
-      speeds = new Float32Array(count);
-      amps = new Float32Array(count);
-      var positions = new Float32Array(count * 3);
-      var colors = new Float32Array(count * 3);
-      var sizes = new Float32Array(count);
-      var tmp = new THREE.Color();
-
-      for (var i = 0; i < count; i++) {
-        var x = (Math.random() - 0.5) * visW * 1.25;
-        var y = (Math.random() - 0.5) * visH * 1.15;
-        // Cluster ~35% of particles toward the upper right to echo the CSS glow
-        if (Math.random() < 0.35) {
-          x = Math.abs(x) * 0.75 + visW * 0.08;
-          y = Math.abs(y) * 0.7;
-        }
-        var z = -30 + Math.random() * 50;
-        home[i * 3] = x; home[i * 3 + 1] = y; home[i * 3 + 2] = z;
-        positions[i * 3] = x; positions[i * 3 + 1] = y; positions[i * 3 + 2] = z;
-
-        if (Math.random() < 0.15) {
-          tmp.copy(GOLD_SPARK);
-          sizes[i] = 4.5 + Math.random() * 2.5;
+      function drawText() {
+        ctx2d.clearRect(0, 0, off.width, off.height);
+        ctx2d.fillStyle = '#D4AF37';
+        // Align to the hidden .hero-brand element so the liquid text sits
+        // exactly where the layout reserves space for it
+        var canvasRect = canvas.getBoundingClientRect();
+        var brandRect = brandEl ? brandEl.getBoundingClientRect() : null;
+        if (brandRect && brandRect.height > 0) {
+          var fs = parseFloat(getComputedStyle(brandEl).fontSize) * dpr;
+          ctx2d.font = '400 ' + fs + 'px "Cormorant Garamond", Georgia, serif';
+          if ('letterSpacing' in ctx2d) ctx2d.letterSpacing = (fs * -0.03) + 'px';
+          ctx2d.textAlign = 'left';
+          ctx2d.textBaseline = 'middle';
+          ctx2d.fillText('Five&Co',
+            (brandRect.left - canvasRect.left) * dpr,
+            (brandRect.top - canvasRect.top + brandRect.height / 2) * dpr);
         } else {
-          tmp.copy(GOLD_LIGHT).lerp(GOLD_DARK, Math.random() * 0.7).lerp(GOLD_SPARK, 0.25 + Math.random() * 0.35);
-          sizes[i] = 2 + Math.random() * 2.5;
+          var fs2 = Math.min(off.height * 0.48, off.width * 0.155);
+          ctx2d.font = '400 ' + fs2 + 'px "Cormorant Garamond", Georgia, serif';
+          ctx2d.textAlign = 'center';
+          ctx2d.textBaseline = 'middle';
+          ctx2d.fillText('Five&Co', off.width / 2, off.height * 0.40);
         }
-        colors[i * 3] = tmp.r; colors[i * 3 + 1] = tmp.g; colors[i * 3 + 2] = tmp.b;
-
-        phases[i] = Math.random() * Math.PI * 2;
-        speeds[i] = 0.3 + Math.random() * 0.7;
-        amps[i] = 0.5 + Math.random() * 1.5;
       }
 
-      geometry = new THREE.BufferGeometry();
-      geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-      geometry.setAttribute('aColor', new THREE.BufferAttribute(colors, 3));
-      geometry.setAttribute('aSize', new THREE.BufferAttribute(sizes, 1));
-      points = new THREE.Points(geometry, material);
-      scene.add(points);
-    }
+      // Wait for font to load then draw
+      if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(function () { drawText(); if (tex) tex.needsUpdate = true; });
+      }
+      drawText();
 
-    buildField();
+      var renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
+      renderer.setPixelRatio(dpr);
+      renderer.setSize(W, H);
 
-    // ── Mouse: parallax target + repulsion point on the z=0 plane
-    var mouse = { x: 0, y: 0, tx: 0, ty: 0 };
-    var mouseWorld = new THREE.Vector3(9999, 9999, 0);
-    var ndc = new THREE.Vector2();
-    var raycaster = new THREE.Raycaster();
-    var plane = new THREE.Plane(new THREE.Vector3(0, 0, 1), 0);
-    var mouseActive = false;
+      var scene = new THREE.Scene();
+      var camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
 
-    if (!isTouch && !reduced) {
+      var tex = new THREE.CanvasTexture(off);
+
+      var mouse = new THREE.Vector2(0.5, 0.5);
+      var tMouse = new THREE.Vector2(0.5, 0.5);
+
       window.addEventListener('mousemove', function (e) {
-        var rect = canvas.getBoundingClientRect();
-        mouse.tx = ((e.clientX - rect.left) / rect.width) * 2 - 1;
-        mouse.ty = -((e.clientY - rect.top) / rect.height) * 2 + 1;
-        mouseActive = true;
-      }, { passive: true });
-      document.addEventListener('mouseleave', function () {
-        mouseActive = false;
-        mouseWorld.set(9999, 9999, 0);
+        tMouse.x = e.clientX / window.innerWidth;
+        tMouse.y = 1.0 - (e.clientY / window.innerHeight);
       });
-    }
 
-    var REPEL_RADIUS = 9;
-    var REPEL_R2 = REPEL_RADIUS * REPEL_RADIUS;
+      var mat = new THREE.ShaderMaterial({
+        uniforms: {
+          uTex:   { value: tex },
+          uTime:  { value: 0 },
+          uMouse: { value: mouse }
+        },
+        vertexShader: [
+          'varying vec2 vUv;',
+          'void main(){vUv=uv;gl_Position=vec4(position.xy,0.0,1.0);}'
+        ].join('\n'),
+        fragmentShader: [
+          'uniform sampler2D uTex;',
+          'uniform float uTime;',
+          'uniform vec2 uMouse;',
+          'varying vec2 vUv;',
+          'vec3 mod289v3(vec3 x){return x-floor(x*(1.0/289.0))*289.0;}',
+          'vec2 mod289v2(vec2 x){return x-floor(x*(1.0/289.0))*289.0;}',
+          'vec3 permute(vec3 x){return mod289v3(((x*34.0)+1.0)*x);}',
+          'float snoise(vec2 v){',
+          '  const vec4 C=vec4(0.211324865,0.366025404,-0.577350269,0.024390244);',
+          '  vec2 i=floor(v+dot(v,C.yy));',
+          '  vec2 x0=v-i+dot(i,C.xx);',
+          '  vec2 i1=(x0.x>x0.y)?vec2(1.0,0.0):vec2(0.0,1.0);',
+          '  vec4 x12=x0.xyxy+C.xxzz; x12.xy-=i1;',
+          '  i=mod289v2(i);',
+          '  vec3 p=permute(permute(i.y+vec3(0.0,i1.y,1.0))+i.x+vec3(0.0,i1.x,1.0));',
+          '  vec3 m=max(0.5-vec3(dot(x0,x0),dot(x12.xy,x12.xy),dot(x12.zw,x12.zw)),0.0);',
+          '  m=m*m;m=m*m;',
+          '  vec3 x=2.0*fract(p*C.www)-1.0;',
+          '  vec3 h=abs(x)-0.5;',
+          '  vec3 ox=floor(x+0.5);',
+          '  vec3 a0=x-ox;',
+          '  m*=1.79284291-0.85373472*(a0*a0+h*h);',
+          '  vec3 g;',
+          '  g.x=a0.x*x0.x+h.x*x0.y;',
+          '  g.yz=a0.yz*x12.xz+h.yz*x12.yw;',
+          '  return 130.0*dot(m,g);',
+          '}',
+          'void main(){',
+          '  vec2 uv=vUv;',
+          '  float n1=snoise(uv*3.0+uTime*0.16)*0.013;',
+          '  float n2=snoise(uv*7.0-uTime*0.11+1.7)*0.006;',
+          '  float n3=snoise(uv*1.8+uTime*0.07+3.1)*0.016;',
+          '  float md=length(uv-uMouse);',
+          '  float mi=smoothstep(0.45,0.0,md)*0.02;',
+          '  vec2 disp=vec2(n1+n2+(uv.x-uMouse.x)*mi, n3+n2+(uv.y-uMouse.y)*mi);',
+          '  vec4 t=texture2D(uTex,uv+disp);',
+          '  float sh=snoise(uv*9.0+uTime*0.45)*0.5+0.5;',
+          '  vec3 gd=vec3(0.722,0.525,0.043);',
+          '  vec3 gm=vec3(0.831,0.686,0.216);',
+          '  vec3 gl=vec3(0.961,0.851,0.478);',
+          '  vec3 col=mix(gd,gm,sh);',
+          '  col=mix(col,gl,sh*sh*0.55);',
+          '  gl_FragColor=vec4(col*t.a,t.a);',
+          '}'
+        ].join('\n'),
+        transparent: true
+      });
 
-    function update(t) {
-      mouse.x += (mouse.tx - mouse.x) * 0.05;
-      mouse.y += (mouse.ty - mouse.y) * 0.05;
-      camera.position.x = mouse.x * 3.5;
-      camera.position.y = mouse.y * 2.5;
-      camera.lookAt(0, 0, 0);
+      scene.add(new THREE.Mesh(new THREE.PlaneGeometry(2, 2), mat));
 
-      if (mouseActive) {
-        ndc.set(mouse.x, mouse.y);
-        raycaster.setFromCamera(ndc, camera);
-        raycaster.ray.intersectPlane(plane, mouseWorld);
+      var running = false, raf = 0;
+      function frame(t) {
+        if (!running) return;
+        mouse.x += (tMouse.x - mouse.x) * 0.06;
+        mouse.y += (tMouse.y - mouse.y) * 0.06;
+        mat.uniforms.uTime.value = t * 0.001;
+        mat.uniforms.uMouse.value = mouse;
+        tex.needsUpdate = false;
+        renderer.render(scene, camera);
+        raf = requestAnimationFrame(frame);
       }
+      function start() { if (!running) { running = true; raf = requestAnimationFrame(frame); } }
+      function stop() { running = false; cancelAnimationFrame(raf); }
 
-      var pos = geometry.attributes.position.array;
-      var mx = mouseWorld.x, my = mouseWorld.y;
-      for (var i = 0; i < count; i++) {
-        var i3 = i * 3, i2 = i * 2;
-        var hx = home[i3], hy = home[i3 + 1];
-        var driftX = Math.sin(t * speeds[i] + phases[i]) * amps[i];
-        var driftY = Math.cos(t * speeds[i] * 0.8 + phases[i] * 1.7) * amps[i] * 0.6;
-
-        var px = hx + driftX + offsets[i2];
-        var py = hy + driftY + offsets[i2 + 1];
-        var dx = px - mx, dy = py - my;
-        var d2 = dx * dx + dy * dy;
-        if (d2 < REPEL_R2 && d2 > 0.0001) {
-          var d = Math.sqrt(d2);
-          var f = (1 - d / REPEL_RADIUS) * 0.6;
-          offsets[i2] += (dx / d) * f;
-          offsets[i2 + 1] += (dy / d) * f;
-        }
-        offsets[i2] *= 0.9;
-        offsets[i2 + 1] *= 0.9;
-
-        pos[i3] = hx + driftX + offsets[i2];
-        pos[i3 + 1] = hy + driftY + offsets[i2 + 1];
-      }
-      geometry.attributes.position.needsUpdate = true;
-    }
-
-    // ── Render loop, paused off-screen / hidden tab / reduced motion
-    var running = false, rafId = 0;
-    function frame(now) {
-      if (!running) return;
-      update(now * 0.001);
-      renderer.render(scene, camera);
-      rafId = requestAnimationFrame(frame);
-    }
-    function start() {
-      if (running || reduced) return;
-      running = true;
-      rafId = requestAnimationFrame(frame);
-    }
-    function stop() {
-      running = false;
-      cancelAnimationFrame(rafId);
-    }
-
-    if (reduced) {
-      update(0);
-      renderer.render(scene, camera);
-    } else {
       var hero = document.getElementById('hero');
-      var heroVisible = true;
-      new IntersectionObserver(function (entries) {
-        heroVisible = entries[0].isIntersecting;
-        if (heroVisible && !document.hidden) start(); else stop();
-      }).observe(hero);
-      document.addEventListener('visibilitychange', function () {
-        if (document.hidden) stop(); else if (heroVisible) start();
-      });
+      new IntersectionObserver(function (e) { e[0].isIntersecting ? start() : stop(); }).observe(hero);
+      document.addEventListener('visibilitychange', function () { document.hidden ? stop() : start(); });
       start();
-    }
 
-    var resizeTimer;
-    window.addEventListener('resize', function () {
-      clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(function () {
-        buildField();
-        if (reduced) {
-          update(0);
-          renderer.render(scene, camera);
-        }
-      }, 200);
+      var resizeTimer;
+      window.addEventListener('resize', function () {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(function () {
+          W = canvas.offsetWidth; H = canvas.offsetHeight;
+          canvas.width = W * dpr; canvas.height = H * dpr;
+          off.width = canvas.width; off.height = canvas.height;
+          renderer.setSize(W, H);
+          drawText();
+          tex.needsUpdate = true;
+        }, 200);
+      });
+    } catch (e) {
+      canvas.style.display = 'none';
+      showBrand();
+    }
+  })();
+
+  /* ═══════════════════════════════════════════════════════════
+     VALUES CARDS — 3D tilt (mouse devices only)
+     ═══════════════════════════════════════════════════════════ */
+  (function () {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (window.matchMedia('(pointer: coarse)').matches) return;
+    var cards = document.querySelectorAll('.val-card[data-tilt]');
+    cards.forEach(function (card) {
+      card.addEventListener('mousemove', function (e) {
+        var r = card.getBoundingClientRect();
+        var x = (e.clientX - r.left) / r.width - 0.5;
+        var y = (e.clientY - r.top) / r.height - 0.5;
+        card.style.transform = 'perspective(600px) rotateY(' + (x * 12) + 'deg) rotateX(' + (-y * 12) + 'deg) translateY(-6px)';
+        card.style.boxShadow = '0 20px 60px rgba(13,12,10,0.12), 0 0 30px rgba(139,105,20,' + (Math.abs(x) * 0.15 + Math.abs(y) * 0.15) + ')';
+      });
+      card.addEventListener('mouseleave', function () {
+        card.style.transform = '';
+        card.style.boxShadow = '';
+        card.style.transition = 'transform 0.5s ease, box-shadow 0.5s ease';
+        setTimeout(function () { card.style.transition = ''; }, 500);
+      });
     });
   })();
 
@@ -851,12 +821,12 @@
 
     if (typeof ScrollTrigger === 'undefined') return;
 
-    // Hero parallax + particle canvas fade on scroll
+    // Hero parallax + liquid canvas fade on scroll
     gsap.to('.hero-inner', {
       yPercent: 18, opacity: 0.25, ease: 'none',
       scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom 30%', scrub: true }
     });
-    gsap.to('#gold-canvas, .hero-bg, .hero-grid', {
+    gsap.to('#liquid-canvas', {
       opacity: 0, ease: 'none',
       scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom 35%', scrub: true }
     });
